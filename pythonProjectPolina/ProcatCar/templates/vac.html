@@ -1,0 +1,104 @@
+{% extends 'layout.html' %}
+
+{% block urlContent %}
+<section class="vacancies-section" style="background-color: #e8e8e814;">
+    <br><br><br><br><br>
+    <h1 class="vacancies-title">Свободные вакансии</h1>
+    <div class="title-underline"></div> <!-- Линия под заголовком -->
+    
+   <!-- Флажок для активации изменения стилей -->
+   <label class="ch" for="style-toggle">Изменить стиль</label>
+   <input type="checkbox" id="style-toggle">
+   
+   <!-- Элементы для изменения стилей -->
+   <div class="style-options" id="style-options" style="display: none;">
+       <div>
+           <label for="font-size">Размер шрифта:</label>
+           <select id="font-size">
+               <option value="16px">Маленький</option>
+               <option value="18px">Средний</option>
+               <option value="20px">Большой</option>
+           </select>
+       </div>
+       <div>
+           <label for="font-color">Цвет текста:</label>
+           <input type="color" id="font-color" value="#666666">
+       </div>
+       <div>
+           <label for="bg-color">Цвет фона:</label>
+           <input type="color" id="bg-color" value="#ffffff">
+       </div>
+   </div>
+<br><br>
+    <div class="vacancies-container">
+        {% for vac in vacs %}
+        <div class="vacancy-block">
+            <img src="{{ vac.contactimg.url }}" alt="{{ vac.vac }}" class="vacancy-img float-left">
+            <h3>{{ vac.vac }}</h3>
+            <p>{{ vac.vacopis }}</p>
+        </div>
+        {% endfor %}
+        <div style="clear: both;"></div> <!-- Очищаем плавающие элементы -->
+    </div>
+</section>
+
+<script>
+    // Начальные стандартные стили
+    const defaultFontSize = '16px';
+    const defaultFontColor = '#666666';
+    const defaultBgColor = '#e8e8e814';
+
+    // Показываем или скрываем элементы для настройки стилей в зависимости от состояния чекбокса
+    document.getElementById('style-toggle').addEventListener('change', function() {
+        var styleOptions = document.getElementById('style-options');
+        if (this.checked) {
+            styleOptions.style.display = 'block';  // Показываем элементы для настройки
+        } else {
+            styleOptions.style.display = 'none';  // Скрываем элементы для настройки
+
+            // Сбрасываем стили к стандартным
+            document.querySelector('.vacancies-section').style.backgroundColor = defaultBgColor;
+            document.querySelector('.vacancies-section').style.fontSize = defaultFontSize;
+            document.querySelector('.vacancies-section').style.color = defaultFontColor;
+
+            // Сбрасываем стиль для всех параграфов и заголовков вакансий
+            var vacancyBlocks = document.querySelectorAll('.vacancy-block p, .vacancy-block h3, .vacancies-title, .vacancy-block p, .ch');
+            vacancyBlocks.forEach(function(element) {
+                element.style.color = defaultFontColor;
+            });
+        }
+    });
+
+    // Изменение шрифта, цвета текста и фона для секции vacancies-section
+    document.getElementById('font-size').addEventListener('change', function() {
+        document.querySelector('.vacancies-section').style.fontSize = this.value;
+    });
+
+    document.getElementById('font-color').addEventListener('input', function() {
+        // Получаем все параграфы и заголовки внутри блоков вакансий и меняем их цвет
+        var vacancyBlocks = document.querySelectorAll('.style-options div, .vacancy-block h3, .vacancies-title');
+        vacancyBlocks.forEach(function(element) {
+            element.style.color = this.value;
+        }.bind(this));  // Используем bind(this), чтобы передать значение из события
+    });
+
+    document.getElementById('font-color').addEventListener('input', function() {
+        // Получаем все параграфы и заголовки внутри блоков вакансий и меняем их цвет
+        var vacancyBlocks = document.querySelectorAll('.vacancy-block p, .ch ');
+        vacancyBlocks.forEach(function(element) {
+            element.style.color = this.value;
+        }.bind(this));  // Используем bind(this), чтобы передать значение из события
+    });
+
+    document.getElementById('bg-color').addEventListener('input', function() {
+        document.querySelector('.vacancies-section').style.backgroundColor = this.value;
+    });
+
+    document.getElementById('bg-color').addEventListener('input', function() {
+        document.body.style.backgroundColor = this.value;
+    });
+</script>
+
+{% endblock %}
+
+{% block title %}Вакансии{% endblock %}

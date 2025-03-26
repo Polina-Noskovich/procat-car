@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block urlContent %}
+<section class="search-section">
+    <br><br><br><br><br>
+    <div class="search-header">
+        <h1><i class="fas fa-search"></i> Поиск по моделям машин</h1>
+        <section class="ser">
+        <p class="categories-highlight">Спорткары || Внедорожники || Эконом-класс || Бизнес-класс</p>
+    </div>
+    <form method="get" class="search-form">
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-search">Поиск</button>
+    </form>
+
+    {% if query %}
+        <h2 class="search-results-header">Результаты поиска</h2>
+        <section class="ser1">
+        <div class="search-results">
+            {% for item in results %}
+                <div class="search-item">
+                    <img width="300" src="{{ item.contactimg.url }}" alt="Изображение {{ item.mark }}">
+                    <h3>Марка машины: {{ item.mark }} || Стоимость: {{ item.price }}</h3>
+                    <p>Модель машины: {{ item.model }}</p>
+                    {% if is_customer %}
+                        <a href="{% url 'add_to_bron' item.id %}" class="btn btn-warning">В заказ</a>
+                    {% endif %}
+                </div>
+            {% empty %}
+                <p>Ничего не найдено</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+</section>
+</section>
+{% endblock %}
+
+{% block title %}Поиск{% endblock %}

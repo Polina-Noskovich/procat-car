@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block urlContent %}
+<section class="features">
+    <h1>{{ catalog_title }}</h1> <!-- Заголовок зависит от выбранной услуги -->
+    <div class="car-list">
+        {% for car in cars %}
+            <div class="car-item">
+                <h2>{{ car.mark }}</h2>
+                <img width="300" src="{{ car.contactimg.url }}" alt="{{ car.model }}" class="car-image">
+                <p>Модель: {{ car.model }}</p>
+                <p>Год выпуска: {{ car.year }}</p>
+                <p>Суточная стоимость проката: {{ car.daily_rent }} руб.</p>
+
+                <!-- Кнопка добавления в заказ доступна только для зарегистрированных пользователей -->
+                {% if user.is_authenticated %}
+                    <a href="{% url 'add_to_bron' car.id %}" class="btn btn-warning">Добавить в заказ</a>
+                {% else %}
+                    <p><a href="{% url 'login' %}">Войдите</a>, чтобы забронировать.</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+{% block title %}Каталог автомобилей{% endblock %}

@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/media/static/procaticon.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- <base href="http://titan/listings/" target="_blank"> Базовый адрес текущего док + ссылок -->
+    <meta name="author" content="Noskovich Polina">
+    <meta name="description" content="Procat Car">
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+    <link rel="stylesheet" href="{% static 'css/liststyle.css' %}">
+    <link rel="stylesheet" href="{% static 'css/news.css' %}">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <link rel="stylesheet" href="{% static 'css/lr3.css' %}">
+    <style media="all">
+        @import url("{% static 'css/faq.css' %}");
+    </style>
+    <!-- Подключаем стиль для карты Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Подключаем скрипт Leaflet -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/lr2.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Dancing+Script&family=Great+Vibes&family=Pacifico&family=Satisfy&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header class="header-container">
+            <nav>
+                <a href="{% url 'index' %}">Главная</a> |
+                <div class="dropdown">
+                    <span сlass="ab" style="font-size: 1.1em; color: #ffffff; text-decoration: none; padding: 6px; transition: background-color 0.3s ease; display: block">О компании</span>
+                    <div class="dropdown-content">
+                        <a href="{% url 'about' %}">О нас</a>
+                        <a href="{% url 'contacts' %}">Контакты</a>
+                        <a href="{% url 'vac' %}">Вакансии</a>
+                    </div>
+                </div> |
+                <a href="{% url 'news' %}">Новости</a> |
+                <a href="{% url 'faq_list' %}">Словарь терминов и понятий</a> |
+                <a href="{% url 'feedback' %}">Отзывы</a> |
+                <a href="{% url 'sales' %}">Промокоды и купоны</a>
+                {% if request.user.is_authenticated %}
+                    {% if is_seller %}
+                        | <a href="{% url 'add_car' %}">Добавить автомобиль</a>
+                        | <a href="{% url 'add_mark' %}">Добавить марку</a>
+                        | <a href="{% url 'foradmin' %}">Для админа</a>
+                    {% endif %}
+                    | <a href="{% url 'order_list' %}">Мои заказы</a>
+                    | <a href="{% url 'car_list' %}">Список автомобилей</a>
+                    | <a href="{% url 'search' %}">Поиск автомобилей</a>
+                    <!--| <a href="{% url 'filter' %}">Фильтр автомобилей</a>-->
+                    | <a href="{% url 'logout' %}">{{ user.username }}/Выйти</a>
+                {% else %}
+                    | <a href="{% url 'login' %}">Вход</a>
+                {% endif %}
+            </nav>
+            
+                    <!-- Логотип компании и надпись рядом -->
+            <div class="logo-title">
+                <div class="hexagon-container">
+                    <a href="{% url 'index' %}">
+                        {% if company_logo %}
+                            <img src="{{ company_logo.image.url }}" alt="{{ company_logo.description }}" />
+                        {% else %}
+                            <img src="/media/static/logo_1.jpg" alt="ProcatCar" />
+                        {% endif %}
+                    </a>
+                </div>
+                <h1>Comfort Car</h1>
+            </div>
+        </header>
+        <script>
+            // Функция для синтеза речи
+            function speakText(text) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'ru-RU'; // Русский язык
+                utterance.pitch = 1;      // Тональность
+                utterance.rate = 1;       // Скорость
+                speechSynthesis.speak(utterance);
+            }
+    
+            // Обработчик нажатия на логотип
+            const logo = document.getElementById('logo');
+            logo.addEventListener('click', () => {
+                speakText('Добро пожаловать на сайт Procat Car');
+            });
+        </script>
+        
+
+   <center>
+   <main>
+       {% block urlContent %}
+       {% endblock %}
+   </main>
+
+   <footer>
+    <hr>
+    <p><a href="#top">Наверх</a></p>
+    <p>Время работы: Пн-Пт с 9:00 до 18:00</p>
+    <p>&copy; 2024 ProcatCar. Все права защищены.</p>
+   </footer>
+
+</body>
+</center>
+</html>

@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block urlContent %}
+<section class="review-container">
+    <br><br><br><br><br>
+    <div class="review-overlay">
+        <div class="review-box">
+            <h1 class="review-title">Добавить отзыв</h1>
+
+            <!-- Отображение ошибок, если они есть -->
+            {% if error %}
+                <p class="error-message">{{ error }}</p>
+            {% endif %}
+
+            <!-- Форма для добавления отзыва -->
+            <form method="POST">
+                {% csrf_token %}
+                
+                <div class="rating-container-f">
+                    <p>Рейтинг:</p>
+                    <div class="star-rating-f">
+                        <input type="radio" id="star1" name="rating" value="1"><label for="star1" class="star-f">&#9733;</label>
+                        <input type="radio" id="star2" name="rating" value="2"><label for="star2" class="star-f">&#9733;</label>
+                        <input type="radio" id="star3" name="rating" value="3"><label for="star3" class="star-f">&#9733;</label>
+                        <input type="radio" id="star4" name="rating" value="4"><label for="star4" class="star-f">&#9733;</label>
+                        <input type="radio" id="star5" name="rating" value="5"><label for="star5" class="star-f">&#9733;</label>
+                    </div>
+                </div>
+
+                {{ form.as_p }}
+                <button type="submit" class="review-button-f">Оценить</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block title %}Добавить отзыв{% endblock %}

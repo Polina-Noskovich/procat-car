@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block urlContent %}
+<br><br><br><br><br><br><br>
+<section class="article">
+    <h1>{{ news.newscrat }}</h1>
+    <div class="article-content">
+        <img class="article-image" src="{{ news.newsimg.url }}" alt="{{ news.newscrat }}">
+        <div class="article-text">
+            <p>{{ news.news }}</p> <!-- Основной текст статьи -->
+        </div>
+    </div>
+    <a href="{% url 'news' %}" class="btn back-button">Назад к списку новостей</a>
+</section>
+{% endblock %}
+
+{% block title %}{{ news.newscrat }}{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block urlContent %}
+<section class="features">
+    <h1>{{ faq.question }}</h1>
+    <p><strong>Дата добавления:</strong> {{ faq.date_added|date:"d M Y" }}</p>
+    <p>{{ faq.answer }}</p>
+    <a href="{% url 'faq_list' %}" class="btn">Назад к списку вопросов</a>
+</section>
+{% endblock %}
+
+{% block title %}{{ faq.question }}{% endblock %}

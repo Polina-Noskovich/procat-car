@@ -1,0 +1,97 @@
+{% extends 'layout.html' %}
+
+{% block urlContent %}
+<section style="height: 100vh; border-radius: 15px; display: flex; justify-content: center; align-items: center; background-image: url('/media/static/dizz.png'); background-size: cover; background-position: center; font-family: 'Roboto', sans-serif;">
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <div style="background-color: rgba(255, 255, 255, 0.75); padding: 50px; border-radius: 20px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); backdrop-filter: blur(10px); max-width: 400px; width: 100%; text-align: center;">
+        <br><br><br><br>
+        <div class="reg-box">
+        <h1 style="font-size: 26px; margin-bottom: 20px; font-weight: 400; color: #333;">Регистрация</h1>
+
+        <!-- Проверка на наличие ошибок формы -->
+        {% if form.errors %}
+            <div style="background-color: rgba(255, 0, 0, 0.1); color: #cc0000; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: left;">
+                <p style="font-size: 16px; font-weight: 500;">Пожалуйста, исправьте ошибки ниже:</p>
+                <ul style="list-style-type: none; padding: 0;">
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li style="font-size: 14px; margin: 5px 0;">{{ field.label }}: {{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <li style="font-size: 14px; margin: 5px 0;">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        
+        {% endif %}
+
+        <!-- Форма регистрации -->
+        <form method="post" id="registration-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+            <!-- Добавляем поле для ввода даты рождения -->
+            <label for="dob">Дата рождения:</label>
+            <input type="date" id="dob" name="dob" required class="form-input" onchange="calculateAgeAndDay()">
+            
+            <p id="age-message"></p>
+            <p id="day-message"></p>
+            
+            <!-- Скрытое поле для возраста -->
+            <input type="hidden" id="age" name="age">
+
+            <button type="submit" id="submit-button" style="background-color: #3C4142; color: white; padding: 12px 20px; font-size: 16px; border: none; cursor: pointer; width: 100%; border-radius: 8px; margin-top: 15px; transition: background-color 0.3s ease;">
+                Зарегистрироваться
+            </button>
+        </form>
+    </div>
+</div>
+</section>
+
+<script>
+    // Функция для вычисления возраста и дня недели
+    function calculateAgeAndDay() {
+        const dob = document.getElementById("dob").value;
+        
+        if (dob) {
+            const birthDate = new Date(dob);
+            const today = new Date();
+            const age = today.getFullYear() - birthDate.getFullYear();
+            const month = today.getMonth() - birthDate.getMonth();
+            
+            // Если день рождения еще не прошел в этом году
+            if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            
+            // Отображаем возраст
+            const ageMessage = document.getElementById("age-message");
+            ageMessage.innerHTML = `Ваш возраст: ${age} лет.`;
+            
+            // Определяем день недели
+            const daysOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+            const dayOfWeek = daysOfWeek[birthDate.getDay()];
+            
+            // Отображаем день недели
+            const dayMessage = document.getElementById("day-message");
+            dayMessage.innerHTML = `Вы родились в: ${dayOfWeek}.`;
+
+            // Устанавливаем возраст в скрытое поле
+            document.getElementById("age").value = age;
+
+            // Проверка на совершеннолетие
+            const submitButton = document.getElementById("submit-button");
+            if (age < 18) {
+                submitButton.disabled = true;
+                alert("Пожалуйста, получите разрешение от родителей для использования сайта.");
+            } else {
+                submitButton.disabled = false;
+            }
+        }
+    }
+</script>
+
+{% endblock %}
+
+{% block title %}Регистрация{% endblock %}

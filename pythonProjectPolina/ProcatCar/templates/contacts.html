@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block urlContent %}
+<section class="contacts-section">
+    <br><br><br><br><br>
+    <h1 class="contacts-title">
+        <i class="fas fa-phone-alt"></i> Контакты
+    </h1>
+    <div class="title-underline"></div> <!-- Добавленная линия под заголовком -->
+    <div class="contacts-container">
+        {% for contact in contacts %}
+        <div class="contact-card">
+            <img src="{{ contact.contactimg.url }}" alt="{{ contact.name }}" class="contact-img">
+            <div class="contact-info">
+                <h3>{{ contact.name }}</h3>
+                <p>Email: <a href="mailto:{{ contact.mail }}">{{ contact.mail }}</a></p>
+                <p>Телефон: <a href="tel:{{ contact.phone_number }}">{{ contact.phone_number }}</a></p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+
+{% block title %}Contacts{% endblock %}

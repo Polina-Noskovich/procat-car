@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block urlContent %}
+<section class="new-ti" style="background-color: #e8e8e814;">
+    <br><br><br><br><br>
+<h1  class="new_titl" style="font-family: 'Didot', serif; font-weight: lighter; letter-spacing: 0.4em; font-size: 2.5em; color: #f5f5f5; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); margin: 50px 0 30px 0; text-align: center">
+    <i class="fas fa-newspaper" style="margin-right: 10px;"></i> <!-- Значок новостей -->Новости</h1>
+<section class="news-section">
+    <div class="news-container">
+        {% for news in news_items %}
+            <div class="news-item">
+                <div class="news-header">
+                    <div class="news-image-container">
+                        <img src="{{ news.newsimg.url }}" alt="{{ news.newscrat }}" class="news-image">
+                    </div>
+                    <h2 class="news-title">{{ news.newscrat }}</h2>
+                </div>
+                <hr class="news-divider"> <!-- Линия разделения -->
+                <div class="news-content">
+                    <p class="news-description">{{ news.news|slice:":100" }}...</p> <!-- Отображаем первые 100 символов кратко -->
+                    <a href="{% url 'news_detail' news.id %}" class="btn">Читать далее <span class="arrow">→</span></a> <!-- Добавили стрелку -->
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+</section>
+{% endblock %}
+
+{% block title %}Новости{% endblock %}

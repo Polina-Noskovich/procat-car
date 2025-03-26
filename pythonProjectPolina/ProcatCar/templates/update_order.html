@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block urlContent %}
+<div class="pop1" style="height: 100vh; background-image: url('/media/static/mam.png')">
+  <br><br><br><br><br><br><br><br>
+<section class="edit-order-section">
+  <h1 class="edit-order-title">Изменить заказ</h1>
+  <form method="post" class="edit-order-form">
+    {% csrf_token %}
+    <!-- Поля формы для редактирования заказа -->
+    <div class="form-group">
+      <label for="start_date" class="form-label">Дата начала:</label>
+      <input type="datetime-local" id="start_date" name="start_date" value="{{ order.start_date }}" required class="form-input">
+    </div>
+    <div class="form-group">
+      <label for="end_date" class="form-label">Дата окончания:</label>
+      <input type="datetime-local" id="end_date" name="end_date" value="{{ order.end_date }}" required class="form-input">
+    </div>
+    <button type="submit" class="form-button">Сохранить изменения</button>
+  </form>
+</section>
+</div>
+
+{% endblock %}
+
+{% block title %}Изменение заказа{% endblock %}
+

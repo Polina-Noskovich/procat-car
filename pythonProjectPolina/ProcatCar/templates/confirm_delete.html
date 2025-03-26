@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block urlContent %}
+<section class="features">
+  <h1>Подтвердите удаление заказа</h1>
+  <p>Вы уверены, что хотите удалить заказ от {{ order.date }}?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Удалить</button>
+    <a href="{% url 'order_list' %}">Отменить</a>
+  </form>
+</section>
+{% endblock %}
+
+{% block title %}Удаление заказа{% endblock %}

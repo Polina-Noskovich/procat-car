@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block urlContent %}
+<section class="login-container">
+    <br>
+    <div class="overlay">
+        <div class="login-box">
+            <h1>Авторизация</h1>
+            
+            <!-- Проверка на наличие ошибок формы -->
+            {% if form.errors %}
+                <div class="error-box">
+                    <p>Пожалуйста, исправьте ошибки ниже:</p>
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ field.label }}: {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="login-button">Войти</button>
+            </form>
+
+            <p>Ещё нет аккаунта?</p>
+            <a href="{% url 'custom' %}" class="signup-link">Зарегистрироваться</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block title %}Авторизация{% endblock %}

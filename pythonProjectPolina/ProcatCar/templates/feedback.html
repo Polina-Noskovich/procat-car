@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block urlContent %}
+<section class="reviews-section"><br><br><br><br>
+    <h1><i class="fas fa-comments"></i> Отзывы наших клиентов</h1>
+
+    <div class="reviews-container">
+        <!-- Отображение отзывов -->
+        {% if feedbacks %}
+            {% for feedback in feedbacks %}
+                <div class="review-card">
+                    <h2 class="review-name">{{ feedback.name }}</h2>
+                    <p class="review-date">{{ feedback.date }}</p>
+                    <div class="review-icon">
+                        <i class="fas fa-comments"></i> <!-- Иконка отзыва -->
+                    </div>
+                    <div class="review-rating">
+                        <div class="divider"></div> <!-- Разделительная линия -->
+                        {% for i in "12345" %}
+                            {% if forloop.counter <= feedback.rating %}
+                                <span class="star">&#9733;</span> <!-- Полная звезда -->
+                            {% else %}
+                                <span class="star">&#9734;</span> <!-- Пустая звезда -->
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <p class="review-text">{{ feedback.text }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Отзывы не найдены.</p>
+        {% endif %}
+    </div>
+<br><br><br><br><br>
+    <!-- Кнопка для добавления отзыва -->
+    <h2 style=" font-size: 2.5em;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 20px; 
+    position: relative; color:aliceblue ">Поставьте нам оценку:</h2>
+    <div>
+        {% if user.is_authenticated %}
+            <a href="{% url 'add_feedback' %}">
+                <button class="add-feedback-button">Добавить отзыв</button>
+            </a>
+        {% else %}
+            <a href="{% url 'login' %}">
+                <button class="add-feedback-button">Добавить отзыв</button>
+            </a>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+
+{% block title %}Отзывы{% endblock %}

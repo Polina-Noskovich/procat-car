@@ -1,0 +1,961 @@
+/* Общие стили */
+body {
+    background-color: #0F0F0F;
+    margin: 0px;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+h1, h2, h3 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: #000000;
+}
+
+a {
+    text-decoration: none;
+    color: #2e3439;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: rgb(181, 181, 181)
+}
+
+/* Контейнер для хедера */
+.header-container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    background-color: rgba(46, 52, 57, 0); 
+    padding: 20px 10px;
+    width: 90%; 
+    max-width: 1500px; /* Максимальная ширина для больших экранов */
+    border-radius: 00px; 
+    margin: -10px 60px; /* Отступ сверху и центрирование */
+    box-sizing: border-box;
+    position: fixed; /* Фиксируем навигацию */
+    z-index: 1000; /* Повышаем уровень отображения над другими элементами */
+    /*padding: 10px 20px; /* Отступы вокруг навигации */ 
+}
+
+/* Лого и заголовок */
+.logo-title {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Отступ между лого и названием */
+    margin-right: 30px; 
+    background-color: rgba(46, 52, 57, 0.016); /* Полупрозрачный цвет фона */
+    backdrop-filter: blur(10px); /* Размытие фона */
+    border-radius: 100px;
+}
+
+.logo-title h1 {
+    font-family: 'Didot', serif;
+    font-weight: lighter;
+    letter-spacing: 0em;
+    font-size: 3em;
+    color: #ffffff; 
+    margin: 0;
+}
+
+/* Контейнер для шестиугольного логотипа */
+.hexagon-container {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: font-size 1s ease; /* Плавный переход для изменения размера */
+}
+
+.hexagon-container:hover {
+    font-size: 51px; /* Увеличиваем размер текста при наведении */
+}
+
+.hexagon-container img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+/* Навигация */
+nav {
+    display: flex;
+    flex-wrap: wrap; /* Разрешаем перенос ссылок на следующую строку */
+    max-width: 880px; /* Ограничиваем ширину навигации */
+    gap: 5px; /* Отступ между кнопками */
+    margin-left: -25px; /* Сдвигаем навигацию влево */
+    padding: 10px;
+    text-align: left; 
+    color: #2e343900;
+    background-color: rgba(46, 52, 57, 0.244);
+    backdrop-filter: blur(10px); /* Размытие фона */
+    border-radius: 50px 10px;
+}
+
+/* Выпадающее меню */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none; /* Скрываем выпадающее меню по умолчанию */
+    position: absolute;
+    border-radius: 15px;
+    background-color: rgb(46, 52, 57);
+    backdrop-filter: blur(1px); /* Размытие фона */
+    min-width: 160px; /* Ширина выпадающего меню */
+    z-index: 1; /* Чтобы оно отображалось над другими элементами */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block; /* Показываем меню при наведении на родительский элемент */
+    background-color: rgba(46, 52, 57, 0.796);
+    backdrop-filter: blur(10px); /* Размытие фона */
+}
+
+.dropdown-content a {
+    color: #ffffff; /* Цвет текста в выпадающем меню */
+    padding: 12px 16px; /* Внутренние отступы */
+    text-decoration: none; /* Убираем подчеркивание */
+    display: block; /* Каждая ссылка как блок */
+    text-align: center;
+}
+
+
+.dropdown-content a:hover {
+    background-color: rgba(46, 52, 57, 0.244);
+    backdrop-filter: blur(10px); /* Размытие фона */
+    color: #e8e8e8b6;             /* Цвет текста при наведении */
+    border-radius: 5px;         /* Округление углов при наведении */
+}
+
+nav span:hover {
+    background-color: rgba(46, 52, 57, 0.244);
+    backdrop-filter: blur(10px); /* Размытие фона */
+    color: #e8e8e8b6;             /* Цвет текста при наведении */
+    border-radius: 50px;         /* Округление углов при наведении */
+}
+
+nav a {
+    font-size: 1.1em;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 6px;
+    transition: background-color 0.3s ease;
+    display: block; /* Каждая ссылка как блок */
+
+}
+
+nav a:hover {
+    background-color: rgba(46, 52, 57, 0.244);
+    backdrop-filter: blur(10px); /* Размытие фона */
+    color: #e8e8e8b6;             /* Цвет текста при наведении */
+    border-radius: 50px;         /* Округление углов при наведении */
+}
+
+.index_1 p {
+    font-size: 1em;            /* Увеличенный размер заголовка */
+    margin: 10px -100px;       /* Убираем отступы сверху и снизу */
+    font-family: 'Playfair Display', italic;
+    font-weight: 200; /* Более тонкий вес */
+    color: #343a40;                 /* Цвет заголовка */
+}
+
+
+
+
+
+
+/* Планшеты (от 768px до 1200px) */
+@media screen and (max-width: 1200px) and (min-width: 768px) {
+    .header-container {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 15px 20px; 
+    }
+
+    .logo-title h1 {
+        font-size: 2.5em; 
+    }
+
+    nav {
+        max-width: 700px; 
+    }
+}
+
+/* Мобильные устройства (до 768px) */
+@media screen and (max-width: 768px) {
+    .header-container {
+        flex-direction: column; /* Ставим элементы в колонку */
+        align-items: center; 
+        width: 100%;
+        margin: 0; 
+        padding: 10px 5px; 
+    }
+
+    .logo-title {
+        margin-right: 0; 
+        gap: 5px; 
+    }
+
+    .logo-title h1 {
+        font-size: 2em; /* Уменьшаем размер заголовка для мобильных */
+    }
+
+    nav {
+        flex-direction: column; /* Переводим навигацию в колонку */
+        align-items: center; /* Центрируем ссылки */
+        margin-left: 0; /* Убираем сдвиг влево */
+        padding: 10px;
+        max-width: 100%; /* Ширина навигации на всю ширину */
+    }
+
+    nav a {
+        padding: 10px 0; /* Увеличиваем вертикальные отступы у ссылок */
+        text-align: center; /* Центрируем текст */
+    }
+
+    .hexagon-container {
+        width: 40px;
+        height: 40px; /* Уменьшаем размер логотипа */
+    }
+
+    .hexagon-container img {
+        width: 30px;
+        height: 30px; /* Уменьшаем картинку в логотипе */
+    }
+}
+
+/* Очень маленькие экраны (до 480px) */
+@media screen and (max-width: 480px) {
+    .header-container {
+        padding: 5px; /* Еще меньше отступы */
+    }
+
+    .logo-title h1 {
+        font-size: 1.8em; /* Еще меньше текст заголовка */
+    }
+
+    .hexagon-container {
+        width: 30px;
+        height: 30px; /* Еще меньше логотип */
+    }
+
+    .hexagon-container img {
+        width: 20px;
+        height: 20px; /* Еще меньше картинка */
+    }
+
+    nav a {
+        font-size: 1em; /* Уменьшаем текст ссылок */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Основной контент */
+main {
+    padding: 0; /* Убираем внутренние отступы */
+    width: 100%; /* Занимаем всю ширину страницы */
+    margin: 00px;
+    background-color: #0F0F0F;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 0; /* Убираем радиус */
+}
+
+
+/* Стили для кнопок */
+button {
+    padding: 10px 20px;
+    background-color: #343a40;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #1f1f1f;
+}
+
+/* Футер */
+footer {
+    text-align: center;
+    background-color: #2e343900;
+    color: #a8a8a8;
+    padding: 20px 0;
+    position: relative;
+    font-family: 'Didot', serif;
+    font-weight: lighter;
+    letter-spacing: 0em;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 10px 0;
+    color: #a8a8a8;
+}
+
+footer a {
+    color: #a8a8a8;
+}
+
+/* Медиазапросы для адаптивности */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    nav a {
+        font-size: 1em;
+        padding: 0 10px;
+    }
+
+    main {
+        padding: 20px 10px;
+    }
+}
+
+.image-with-title {
+    display: flex;               /* Используем Flexbox для выравнивания элементов */
+    align-items: flex-start;     /* Заголовок будет выше картинки */
+    justify-content: right;      /* Контент выравнивается по правому краю */
+}
+
+.title-text {
+    margin-right: 100px;          /* Отступ между текстом и изображением */
+    text-align: left;           /* Выравниваем текст по правому краю */
+    font-family: 'Playfair Display', italic;
+    font-weight: 600; /* Более тонкий вес */
+    margin: 80px 0 0px 0px;  
+}
+
+.title-text h2 {
+    font-size: 3em;            /* Увеличенный размер заголовка */
+    margin: 5px;                   /* Убираем отступы сверху и снизу */
+    font-family: 'Playfair Display', italic;
+    font-weight: 200; /* Более тонкий вес */
+    color: #000;                 /* Цвет заголовка */
+}
+
+.title-text p {
+    font-size: 1.5em;            /* Размер шрифта для подписи */
+    margin: 10px;           /* Небольшой отступ сверху */
+    color: #000;                 /* Темный цвет для подписи */
+}
+
+.image-with-title img {
+    max-width: 60%;              /* Ограничиваем ширину изображения */
+    height: auto;                /* Сохраняем пропорции изображения */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.hero-section {
+    position: relative;
+    border-radius: 0px;
+    background-image: url('/media/static/sports-car.jpg');
+    background-size: cover; /* Картинка будет занимать весь блок */
+    background-position: center; /* Картинка будет центрирована */
+    height: 100vh; /* Высота блока на всю высоту экрана */
+    width: auto; /* Ширина блока на всю ширину экрана */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    max-width: 80%;
+    display: flex;
+    justify-content: space-between; /* Выровнять заголовок и текст по краям */
+    align-items: center; /* Выравнивание по вертикали на одном уровне */
+    position: relative; /* Для абсолютного позиционирования кнопки */
+    margin-top: -110px;
+    z-index: 1;
+}
+
+.hero-content h1 {
+    width: 600px;
+    font-size: 50px;
+    letter-spacing: 0.1em;
+    font-family: 'Didot', serif;
+    text-align: left; /* Заголовок выравнивается слева */
+    color: #ffffff;
+    margin: 0; /* Убираем лишние отступы */
+    text-shadow: 10px 10px 40px rgba(1, 1, 1, 1.7); /* Тень для текста */
+    transition: font-size 1s ease; /* Плавный переход для изменения размера */
+}
+
+.hero-content h1:hover {
+    font-size: 53px; /* Увеличиваем размер заголовка при наведении */
+}
+
+.hero-content p {
+    font-size: 20px;
+    font-family: 'Didot', serif;
+    font-weight: lighter;
+    letter-spacing: 0.1em;
+    color: #ffffff;
+    text-shadow: 10px 10px 40px rgba(1, 1, 1, 1.7); /* Тень для текста */
+    margin: 0;
+    max-width: 35%; /* Ограничиваем ширину параграфа, чтобы текст был компактнее */
+    text-align: right; /* Выравниваем текст по правому краю */
+    transition: font-size 1s ease; /* Плавный переход для изменения размера */
+    margin: 180px 0 0 0; 
+}
+
+.hero-content p:hover {
+    font-size: 22px; /* Увеличиваем размер текста при наведении */
+}
+
+.hero-content .cta-button {
+    position: absolute;
+    bottom: -20px; /* Размещаем кнопку в правом нижнем углу */
+    right: 50px;  /* Привязка кнопки к правому нижнему углу */
+    padding: 15px 20px;
+    font-family: 'Didot', serif;
+    font-size: 20px;
+    background-color: #2e3439cd;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+    z-index: 2;
+    margin: -40px; /* Убираем лишние отступы */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Добавляем тень для кнопки */
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s; /* Плавные переходы */
+}
+
+/* Эффект при наведении */
+.hero-content .cta-button:hover {
+    background-color: #2225297f; /* Более темный синий при наведении */
+    box-shadow: 0px 6px 8px rgba(1, 1, 1, 1); /* Увеличенная тень */
+    transform: scale(0.95); /* Сжатие кнопки при нажатии */
+}
+
+
+.countdown-timer {
+    position: absolute;
+    font-family: 'Didot', serif;
+    font-weight: lighter;
+    letter-spacing: 0.4em;
+    bottom: 10px;
+    left: 300px;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 10px 20px;
+    border-radius: 8px;
+    z-index: 5;
+} 
+
+
+
+
+
+
+
+
+
+
+/* Заголовок секции услуг */
+.services-title {
+    text-align: center;
+    font-family: 'Didot', serif;
+    font-weight: lighter;
+    letter-spacing: 0.4em;
+    font-size: 2.5em;
+    color: rgba(255, 255, 255, 0.815);
+    margin: 40px 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);    
+}
+
+/* Линия-разделитель */
+.divider {
+    width: 80%; /* Ширина линии */
+    margin: 0 auto 20px; /* Центрирование линии с отступами */
+    border: 0; /* Убираем стандартные границы */
+    height: 2px; /* Высота линии */
+    background-color: #cccccc; /* Цвет линии */
+    border-radius: 5px; /* Закругленные края */
+}
+
+.divider-1 {
+    width: 80%; /* Ширина линии */
+    margin: 0 auto 20px; /* Центрирование линии с отступами */
+    border: 0; /* Убираем стандартные границы */
+    height: 2px; /* Высота линии */
+    background-color: #0c0c0c73; /* Цвет линии */
+    border-radius: 5px; /* Закругленные края */
+}
+
+
+/* Контейнер для карточек услуг с фоновым изображением */
+.services-container {
+    display: flex; /* Используем flexbox для горизонтального расположения */
+    justify-content: space-around; /* Распределяем карточки по контейнеру */
+    align-items: stretch; /* Убедимся, что карточки имеют одинаковую высоту */
+    background-size: cover; /* Заставляем изображение занимать весь контейнер */
+    background-position: center; /* Центрируем изображение */
+    padding: 20px; /* Отступы для контейнера */
+    border-radius: 15px; /* Округленные углы */
+    width: 80%;
+    height: 50vh;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.423); /* Тень */
+    background: linear-gradient(
+        135deg, /* Угол, под которым создается градиент */
+        rgba(255, 255, 255, 0.5) 0%, 
+        rgba(255, 255, 255, 0) 30%, 
+        rgba(0, 0, 0, 0.2) 50%,
+        rgba(255, 255, 255, 0) 70%,
+        rgba(255, 255, 255, 0.5) 100%
+    );
+}
+
+/* Стиль карточки */
+.service-card {
+    background-color: rgba(255, 255, 255, 0.74); /* Полупрозрачный белый фон для карточки */
+    border: 1px solid #dddddd; /* Светлая граница */
+    border-radius: 15px; /* Округленные углы */
+    padding: 20px; /* Внутренние отступы */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.044); /* Тень для карточки */
+    transition: transform 1s ease, box-shadow 1s ease; /* Плавный эффект при наведении */
+    flex: 1; /* Карточки равномерно распределяются по ширине */
+    margin: 10px; /* Отступы между карточками */
+}
+
+/* Эффект при наведении на карточку */
+.service-card:hover {
+    transform: translateY(-5px); /* Подъем карточки вверх */
+    box-shadow: 0 4px 20px rgba(0.5, 0.5, 0.5, 0.6); /* Увеличение тени */
+}
+
+/* Стили для заголовка услуги */
+.service-card h3 {
+    font-family: 'Playfair Display', serif; /* Стиль шрифта заголовка */
+    font-size: 1.5em; /* Размер шрифта заголовка */
+    margin-bottom: 10px; /* Отступ снизу */
+}
+
+/* Стили для текста описания */
+.service-card p {
+    font-family: 'Roboto', sans-serif; /* Шрифт для текста */
+    font-size: 1.05em;
+    color: #666666; /* Цвет текста */
+    line-height: 1.5; /* Межстрочный интервал */
+    margin: 0; /* Убираем отступы */
+}
+
+.foto {
+    display: flex; /* Используем flexbox для горизонтального расположения */
+    justify-content: space-around; /* Распределяем карточки по контейнеру */
+    align-items: stretch; /* Убедимся, что карточки имеют одинаковую высоту */
+    background-image: url('/media/static/hah_1.jpg'); /* Фоновое изображение */
+    background-size: cover; /* Заставляем изображение занимать весь контейнер */
+    background-position: center; /* Центрируем изображение */
+    padding: 20px; /* Отступы для контейнера */
+    border-radius: 0px; /* Округленные углы */
+    height: 50vh;
+}
+
+.slider {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+}
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.slide {
+    min-width: 100%;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+}
+.slide img {
+    align-items: stretch; /* Убедимся, что карточки имеют одинаковую высоту */
+    background-size: cover; /* Заставляем изображение занимать весь контейнер */
+    background-position: center; /* Центрируем изображение */
+    height: 50vh;
+}
+.slide p {
+    position: absolute;
+    font-family: 'Didot', serif;
+    font-weight: lighter;
+    letter-spacing: 0.4em;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 25px;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.116);
+    padding: 5px 10px;
+}
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    color: white;
+    background-color: #00000000;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    font-family: 'Didot', serif;
+    font-weight: lighter;
+    letter-spacing: 0.2em;
+}
+.prev { left: 350px; }
+.next { right: 350px; }
+.pagination {
+    text-align: center;
+    padding: 10px 0;
+}
+.pagination .dot {
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.pagination .dot.active {
+    background-color: #717171;
+}
+.slide-count {
+    position: absolute;
+    top: 10px;
+    left: 450px;
+    background-color: rgba(0, 0, 0, 0.148); /* полупрозрачный фон для контраста */
+    color: white;
+    padding: 10px 10px;
+    border-radius: 30px;
+    font-size: 20px;
+    font-family: 'Didot', serif;
+    font-weight: lighter;
+    letter-spacing: 0.2em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Секция с машинами */
+.car-section {
+    text-align: center;
+    padding: 40px;
+}
+
+.car-model {
+    display: inline-block;
+    margin: 20px;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 1s ease;
+}
+
+.car-model:hover {
+    transform: scale(1.05); /* Легкое увеличение при наведении */
+}
+
+.car-model img {
+    width: 100%;
+    max-width: 300px; /* Ограничиваем ширину изображения */
+    border-radius: 15px 15px 0 0; /* Округленные верхние углы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для изображения */
+}
+
+.car-info {
+    background: linear-gradient(
+        135deg, /* Угол, под которым создается градиент */
+        rgba(0, 0, 0, 0.2) 0%, 
+        rgba(255, 255, 255, 0) 30%, 
+        rgba(255, 255, 255, 0.5) 100% 
+    );
+    padding: 10px;
+    border-radius: 0 0 15px 15px; /* Округленные нижние углы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для информации */
+}
+
+.car-info h3 {
+    font-size: 1.5em;
+    margin: 10px 0;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.845);
+    transition: color 0.3s ease;
+}
+
+.car-info p {
+    font-size: 1em;
+    color: #888888;
+    margin: 5px 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.car-info a {
+    text-decoration: none;
+    color: inherit; /* Наследуем цвет, чтобы стили заголовка не менялись */
+}
+
+.car-info a:hover h3 {
+    color: #6c6c6cb6; /* Цвет при наведении */
+}
+
+
+
+
+
+
+
+
+/* Заголовок для списка партнеров */
+.partners-title {
+    font-family: 'Playfair Display', serif;
+    text-align: center; 
+    font-size: 2em; 
+    margin-bottom: 20px;
+    color: #333; 
+}
+
+/* Контейнер для блоков партнеров */
+.partners-container {
+    font-family: 'Playfair Display', serif;
+    display: flex; /* Используем flexbox для выравнивания */
+    justify-content: center; /* Центрируем блоки */
+    flex-wrap: wrap; /* Позволяем перенос блоков на следующую строку */
+}
+
+/* Стили для блока партнера */
+.partner-block {
+    display: flex; /* Используем flexbox для выравнивания содержимого */
+    flex-direction: column; /* Вертикальное выравнивание элементов внутри блока */
+    align-items: center; /* Центрируем элементы по горизонтали */
+    justify-content: center; /* Центрируем элементы по вертикали */
+    background: linear-gradient(
+        135deg, 
+        rgba(0, 0, 0, 0.2) 0%, 
+        rgba(255, 255, 255, 0) 30%, 
+        rgba(255, 255, 255, 0.5) 100% 
+    );
+    border-radius: 50%;
+    width: 120px; 
+    height: 120px;
+    margin: 15px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
+    text-decoration: none; /* Убираем подчеркивание */
+    transition: transform 1s ease;
+}
+
+/* Эффект при наведении на блок */
+.partner-block:hover {
+    transform: scale(1.05); /* Увеличение блока при наведении */
+}
+
+/* Стили для логотипа партнера */
+.partner-logo {
+    width: 50px; 
+    height: 50px;
+    border-radius: 50%; /* Округление логотипа */
+    margin-bottom: 10px; 
+}
+
+/* Стили для названия партнера */
+.partner-name {
+    color: #c8c4c4;
+    font-size: 1em; 
+    text-align: center; 
+    margin: 0; /* Убираем отступы */
+    font-kerning: normal;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Заголовок секции последних новостей */
+.latest-news-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    color: rgba(255, 255, 255, 0.815);
+    width: 40%; 
+    margin: 80px 0;
+    text-align: left;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Контейнер для последних новостей */
+.latest-news {
+    width: 1200px; /* Максимальная ширина контейнера */
+    height: 300px;
+    border-radius: 15px;
+    margin: 0 auto; /* Центрирование контейнера на странице */
+    display: flex;
+    justify-content: left; /* Центрируем контент */
+    background-color: #575a5756;
+}
+
+/* Элемент последней новости */
+.latest-news-item {
+    position: relative; /* Позволяет позиционировать внутренний текст */
+    display: flex; /* Устанавливаем flex для горизонтального расположения */
+    align-items: center; /* Выравнивание по центру вертикально */
+    justify-content: center; /* Центрирование контента */
+    padding: 20px;
+    width: 1200px; /* Фиксированная ширина для горизонтального отображения */
+    color: white; /* Цвет текста */
+    text-decoration: none; /* Убираем подчеркивание у ссылки */
+    background-size: cover; /* Заполняем весь блок изображением */
+    background-position: center; /* Центрируем изображение */
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 1s ease;
+}
+
+.latest-news-item:hover {
+    transform: scale(1.05); /* Увеличение при наведении */
+}
+
+/* Стили для контейнера текста новости */
+.latest-news-content {
+    background-color: rgba(1, 1, 1, 0); /* Полупрозрачный фон для текста */
+    backdrop-filter: blur(10px); /* Размытие фона */
+    padding: 20px;
+    height: 100%;
+    width: 50%;
+    text-align: center;
+}
+
+/* Стили для заголовка новости */
+.latest-news-content h3 {
+    font-size: 1.8em;
+    margin: 0 0 25px 0;
+    color: white;
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    font-weight: lighter;
+    letter-spacing: 0.1em;
+}
+
+/* Стили для текста новости */
+.latest-news-content p {
+    font-size: 1.1em;
+    color: white;
+    font-family: 'Roboto', sans-serif; /* Шрифт для текста */
+    font-weight: lighter;
+    letter-spacing: 0.1em;
+    text-align: center;
+    margin: 5px 0;
+    text-shadow: 1px 1px 2px rgba(1, 1, 1, 1.1);
+    line-height: 1.6; /* Увеличиваем межстрочный интервал для лучшей читаемости */
+    letter-spacing: 0.6px; /* Интервал между буквами (настраивайте значение) */
+}
+/* Элемент с картинкой справа */
+.latest-news-image {
+    width: 50%; /* Ширина блока с изображением */
+    height: 120%;
+    border-radius: 15px;
+    background-size: cover; /* Изображение растягивается на весь блок */
+    background-position: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Тень для изображения */
+    transition: transform 1s ease; /* Плавный эффект увеличения */
+}
+
+.latest-news-image:hover {
+    transform: scale(1.05); /* Увеличение при наведении */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

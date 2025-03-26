@@ -1,0 +1,473 @@
+{% extends 'layout.html' %}
+
+{% block urlContent %}
+<section class="contacts-section" style="padding: 20px;">
+    <br><br><br><br><br>
+    <h1 class="contacts-title" style="font-size: 2em; color: #ffffff; text-align: center;">
+        <i class="fas fa-phone-alt"></i> Контакты
+    </h1>
+    <div class="title-underline" style="width: 50%; margin: 10px auto; border-bottom: 2px solid #ffffff;"></div>
+    <!-- Кнопка "Добавить" -->
+    <button onclick="openAddForm()" class="add-button" style="margin-top: 20px; padding: 10px 20px; font-size: 1em; color: #fff; background-color: #2b2a2a; border: none; border-radius: 5px; cursor: pointer;">Добавить</button>
+
+<!-- Прелоадер -->
+<div id="preloader" style="display: none;">
+    <div class="elegant-lines">
+        <svg viewBox="0 0 120 120" class="infinity-path">
+            <!-- Путь в форме восьмерки -->
+            <path d="M60,30 C90,10 110,50 60,70 C10,90 30,130 60,110 C90,90 30,50 60,30" 
+                  fill="none" stroke="url(#grad)" stroke-width="3" />
+            <defs>
+                <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:rgb(255,0,255);stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:rgb(0,0,255);stop-opacity:1" />
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+    <p>Загрузка<span id="dots"></span></p>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const dotsElement = document.getElementById('dots');
+        let dots = '';
+        let count = 0;
+
+        setInterval(() => {
+            count = (count + 1) % 4;  // Цикл от 0 до 3
+            dots = '.'.repeat(count);  // Генерируем точки
+            dotsElement.textContent = dots;  // Меняем содержимое элемента
+        }, 1000);  // Интервал в 500 миллисекунд
+    });
+</script>
+
+
+
+
+    <!-- Форма добавления данных -->
+    <div id="add-form" style=" display: none; margin-top: 20px; background: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <h3>Добавить контакт</h3>
+        <form id="contact-form">
+            <label for="full-name">ФИО:</label>
+            <input type="text" id="full-name" name="name" required style="width: 100%; padding: 10px; margin-bottom: 10px;" oninput="checkFormCompletion()">
+            
+            <label for="photo">Фото (URL):</label>
+            <input type="text" id="photo" name="photo" required style="width: 100%; padding: 10px; margin-bottom: 10px;" oninput="checkFormCompletion()">
+            
+            <label for="phone">Телефон:</label>
+            <input type="text" id="phone" name="phone" required style="width: 100%; padding: 10px; margin-bottom: 10px;" oninput="checkFormCompletion()">
+            
+            <label for="email">Почта:</label>
+            <input type="email" id="email" name="email" required style="width: 100%; padding: 10px; margin-bottom: 10px;" oninput="checkFormCompletion()">
+            
+            <button type="button" id="submit-button" style="padding: 10px 20px; background-color: #2b2a2a; border: none; border-radius: 5px; cursor: pointer;" disabled onclick="validateAndSubmitForm()">Добавить в таблицу</button>
+        </form>
+        <div id="validation-result" style="margin-top: 10px;"></div>
+    </div>
+
+    <!-- Фильтрация контактов -->
+    <div class="filter-container" style="display: flex; justify-content: center; align-items: center; margin: 20px auto;">
+        <input type="text" id="filter-input" placeholder="Поиск..." style="padding: 10px; width: 300px; font-size: 1em; border-radius: 5px; border: 1px solid #ccc;">
+        <button onclick="filterTable()" class="filter-button" style="margin-left: 10px; padding: 10px 20px; font-size: 1em; color: #fff; background-color: #2b2a2a; border: none; border-radius: 5px; cursor: pointer;">Найти</button>
+    </div>
+
+    <div class="contacts-container">
+        <!-- Таблица контактов -->
+        <table id="contacts-table" style="width: 80%; margin: 0 auto; font-size: 1.2em; font-family: 'Didot', serif; border-collapse: separate; border-radius: 10px; margin-top: 20px; background: #cfcdcd6b; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <thead>
+                <tr>
+                    <th style="padding: 12px; text-align: left; cursor: pointer; color: #ffffff99;" onclick="sortTable(0)">Выбор</th>
+                    <th style="padding: 12px; text-align: left; cursor: pointer; color: #ffffff99;" onclick="sortTable(1)">Фото</th>
+                    <th style="padding: 12px; text-align: left; cursor: pointer; color: #ffffffd8;" onclick="sortTable(2)">Должность + Имя <span id="sort-icon-2"></span></th>
+                    <th style="padding: 12px; text-align: left; cursor: pointer; color: #ffffffd8;" onclick="sortTable(3)">Телефон <span id="sort-icon-3"></span></th>
+                    <th style="padding: 12px; text-align: left; cursor: pointer; color: #ffffffd8;" onclick="sortTable(4)">Почта <span id="sort-icon-4"></span></th>
+                </tr>
+            </thead>
+            <tbody id="contacts-tbody">
+                {% for contact in contacts %}
+                <tr class="contact-row" style="background: linear-gradient(100deg, #f0f0f077, #ffffffdc); border-bottom: 1px solid #dddddd; border-left: 1px solid #dddddd; border-right: 1px solid #dddddd; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);">
+                    <td style="padding: 12px; text-align: left;">
+                        <input type="checkbox" name="contact_{{ contact.id }}" value="{{ contact.id }}" style="background-color: #333333; border: 1px solid #444444;">
+                    </td>
+                    <td style="padding: 12px; text-align: left;">
+                        <img src="{{ contact.contactimg.url }}" alt="{{ contact.name }}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+                    </td>
+                    <td style="padding: 12px; text-align: left; color: #333333; font-weight: 500;">{{ contact.name }}</td>
+                    <td style="padding: 12px; text-align: left;">
+                        <a href="tel:{{ contact.phone_number }}" style="text-decoration: none;">{{ contact.phone_number }}</a>
+                    </td>
+                    <td style="padding: 12px; text-align: left;">
+                        <a href="mailto:{{ contact.mail }}" style="text-decoration: none;">{{ contact.mail }}</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>        
+
+        <!-- Навигация пагинации -->
+        <div id="pagination" style="text-align: center; margin-top: 20px; font-family: 'Didot', serif;">
+            <button onclick="prevPage()" class="pagination-button" style ="font-size: 1.2em; font-family: 'Didot', serif; color: #fff; background: linear-gradient(145deg, #f0f0f000, #ffffff91);">Предыдущая</button>
+            <span id="page-info" class="pagination-info">1</span>
+            <button onclick="nextPage()" class="pagination-button" style ="font-size: 1.2em; font-family: 'Didot', serif; color: #fff; background: linear-gradient(145deg, #f0f0f000, #ffffff91);">Следующая</button>
+        </div>
+        <br><br><br><br><br><hr class="divider">
+        <!-- Контейнер для кнопки "Премировать" -->
+        <div style="justify-content: center; margin-top: 20px;">
+            <button onclick="rewardSelectedContacts()" style="padding: 10px 20px; margin-right: 0px; font-size: 1.2em; font-family: 'Didot', serif; color: #fff; background: linear-gradient(145deg, #f0f0f014, #ffffff91); border: none; border-radius: 5px; cursor: pointer;">
+                Премировать выбранных сотрудников
+            </button>
+        </div>
+        
+<!-- Всплывающий блок для списка премированных сотрудников -->
+<div id="reward-popup" style="display: none; position: fixed; top: 50%; font-family: 'Didot', serif; left: 50%; transform: translate(-50%, -50%); background: linear-gradient(145deg, #f0f0f0, #747474); padding: 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-family: 'Didot', serif; width: 50%; max-width: 500px;">
+    <h3 style="font-size: 1.4em; font-family: 'Didot', serif; color: #2e2e2e; text-align: center;">Список премированных сотрудников</h3>
+    <p id="rewarded-names" style="font-size: 1.2em; color: #2e2e2e;"></p>
+    <button onclick="closeRewardPopup()" style="font-size: 1.2em; color: #2e2e2e; font-family: 'Didot', serif;display: block; margin: 20px auto 0; padding: 10px 20px; background: linear-gradient(145deg, #656565a2, #ffffffdc); border: none; border-radius: 5px; cursor: pointer;">Закрыть</button>
+</div>
+        <br><br><br><br><br><hr class="divider"><br>
+        <!-- Дополнительный блок для отображения выбранной строки -->
+        <div id="contact-details" style="font-size: 1.4em; margin-top: 30px; padding: 20px; background: linear-gradient(145deg, #f0f0f044, #ffffffdc); border-radius: 5px; display: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-family: 'Didot', serif; letter-spacing: 0.1em;">
+            <h3 style="font-size: 1.4em; margin-bottom: 15px; font-family: 'Didot', serif;">Информация о контакте</h3>
+            <img id="contact-image" src="" alt="Фото контакта" style="max-width: 150px; border-radius: 30%; margin-bottom: 15px; display: block; margin-left: auto; margin-right: auto;">
+            <p id="contact-name" style="font-weight: 600;"></p>
+            <p id="contact-phone"></p>
+            <p id="contact-mail"></p>
+        </div>
+    </div>
+</section>
+
+<script>
+    let sortDirections = [true, true, true, true, true];
+    // Индекс отсортированного столбца
+    let sortedColumnIndex = null;
+    // Флаг для отслеживания, применены ли фильтры
+    let isFiltered = false;
+    const rowsPerPage = 3;
+    let currentPage = 1;
+
+    function sortTable(columnIndex) {
+        showPreloader();
+
+        // Используем requestAnimationFrame для того, чтобы браузер успел отрисовать прелоадер, прежде чем начнется сортировка
+        requestAnimationFrame(() => {
+            // Добавляем задержку для того, чтобы прелоадер был видим в течение 2 секунд
+            setTimeout(() => {
+                const tbody = document.getElementById("contacts-tbody");
+                // Извлекаем все строки таблицы (tr) в массив
+                const rows = Array.from(tbody.getElementsByTagName("tr"));
+                // Определяем, должен ли столбец быть отсортирован по возрастанию или убыванию
+                const isAscending = sortDirections[columnIndex];
+
+                // Сортируем строки по содержимому ячеек в выбранном столбце
+                rows.sort((rowA, rowB) => {
+                    // Извлекаем текст из ячеек для сравнения
+                    const cellA = rowA.getElementsByTagName("td")[columnIndex].innerText.toLowerCase();
+                    const cellB = rowB.getElementsByTagName("td")[columnIndex].innerText.toLowerCase();
+                    
+                    // Сравниваем ячейки и возвращаем результат в зависимости от направления сортировки
+                    if (cellA < cellB) return isAscending ? -1 : 1;
+                    if (cellA > cellB) return isAscending ? 1 : -1;
+                    return 0; 
+                });
+
+                // Меняем направление сортировки для следующего раза (если был сорт по возрастанию, будет по убыванию, и наоборот)
+                sortDirections[columnIndex] = !isAscending;
+                // Обновляем индекс отсортированного столбца
+                sortedColumnIndex = columnIndex;
+
+                // Очищаем все стрелки сортировки
+                document.querySelectorAll("th span").forEach(span => span.innerHTML = "");
+                // Добавляем стрелку вверх или вниз в заголовок столбца, в зависимости от направления сортировки
+                document.getElementById(`sort-icon-${columnIndex}`).innerHTML = isAscending ? "↑" : "↓";
+
+                // Перемещаем отсортированные строки обратно в tbody
+                rows.forEach(row => tbody.appendChild(row));
+
+                if (!isFiltered) {
+                    displayPage(currentPage);
+                } else {
+                    displayFilteredPage();
+                }
+
+                hidePreloader();
+            }, 2000); 
+        });
+    }
+
+function displayPage(page) {
+    const tbody = document.getElementById("contacts-tbody");
+    const rows = Array.from(tbody.getElementsByTagName("tr"));
+    // Вычисляем общее количество страниц, округляя в большую сторону
+    const totalPages = Math.ceil(rows.length / rowsPerPage);
+
+    // Скрываем все строки таблицы, чтобы показать только те, которые соответствуют текущей странице
+    rows.forEach(row => row.style.display = "none");
+
+    // Вычисляем индексы для отображаемых строк в зависимости от текущей страницы
+    const start = (page - 1) * rowsPerPage; 
+    const end = start + rowsPerPage; 
+
+    // Отображаем строки, которые принадлежат текущей странице
+    rows.slice(start, end).forEach(row => row.style.display = "");
+
+    document.getElementById("page-info").innerText = `${page} / ${totalPages}`;
+}
+
+function displayFilteredPage() {
+    const tbody = document.getElementById("contacts-tbody");
+    const rows = Array.from(tbody.getElementsByTagName("tr"));
+    // Фильтруем строки, показывая только те, у которых стиль не установлен на "none"
+    const filteredRows = rows.filter(row => row.style.display !== "none");
+    const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+
+    // Скрываем все отфильтрованные строки
+    filteredRows.forEach(row => row.style.display = "none");
+
+    const start = (currentPage - 1) * rowsPerPage; 
+    const end = start + rowsPerPage; 
+
+    // Отображаем строки, которые принадлежат текущей странице из отфильтрованных
+    filteredRows.slice(start, end).forEach(row => row.style.display = "");
+
+    document.getElementById("page-info").innerText = `${currentPage} / ${totalPages}`;
+}
+
+
+    function nextPage() {
+        const tbody = document.getElementById("contacts-tbody");
+        const rows = Array.from(tbody.getElementsByTagName("tr"));
+        const totalPages = isFiltered ? Math.ceil(rows.filter(row => row.style.display !== "none").length / rowsPerPage) : Math.ceil(rows.length / rowsPerPage);
+        if (currentPage < totalPages) {
+            currentPage++;
+            if (isFiltered) {
+                displayFilteredPage();
+            } else {
+                displayPage(currentPage);
+            }
+        }
+    }
+
+    function prevPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            if (isFiltered) {
+                displayFilteredPage();
+            } else {
+                displayPage(currentPage);
+            }
+        }
+    }
+
+// Функция фильтрации таблицы
+function filterTable() {
+    showPreloader();  // Показываем прелоадер перед фильтрацией
+
+    // Ждем, пока браузер отрисует прелоадер, перед тем как начинать фильтрацию
+    setTimeout(() => {
+        const filterText = document.getElementById("filter-input").value.toLowerCase();
+        const tbody = document.getElementById("contacts-tbody");
+        const rows = Array.from(tbody.getElementsByTagName("tr"));
+
+        rows.forEach(row => {
+            const cellsText = Array.from(row.getElementsByTagName("td")).map(cell => cell.innerText.toLowerCase());
+            const matches = cellsText.some(text => text.includes(filterText));
+            row.style.display = matches ? "" : "none";
+        });
+
+        isFiltered = filterText !== "";
+        if (isFiltered) {
+            currentPage = 1;
+            displayFilteredPage();
+        } else {
+            currentPage = 1;
+            displayPage(currentPage);
+        }
+
+        hidePreloader();  // Скрываем прелоадер после завершения фильтрации
+    }, 500);  // Задержка для отрисовки прелоадера
+}
+
+    function showContactDetails(row) {
+    const cells = row.getElementsByTagName("td");
+    const name = cells[2].innerText;
+    const phone = cells[3].innerText;
+    const mail = cells[4].innerText;
+    const imageSrc = row.querySelector('img').src; // Получаем URL изображения
+
+    // Обновляем информацию в блоке с деталями
+    document.getElementById("contact-name").innerText = `${name}`;
+    document.getElementById("contact-phone").innerText = `Телефон: ${phone}`;
+    document.getElementById("contact-mail").innerText = `Почта: ${mail}`;
+    document.getElementById("contact-image").src = imageSrc; // Устанавливаем изображение
+
+    // Отображаем блок с деталями
+    document.getElementById("contact-details").style.display = "block";
+
+    // Прокручиваем страницу к блоку с деталями
+    document.getElementById("contact-details").scrollIntoView({
+        behavior: "smooth", // плавная прокрутка
+        block: "start" // прокрутка до верхней части блока
+    });
+}
+
+
+    // Добавляем обработчик клика по строкам
+    document.querySelectorAll('.contact-row').forEach(row => {
+    row.addEventListener('click', function(event) {
+        if (event.target.tagName.toLowerCase() !== 'input') {  // Проверка, что клик не по чекбоксу
+            showContactDetails(this);
+        }
+    });
+});
+
+
+    displayPage(currentPage);
+</script>
+
+<script>
+function showPreloader() {
+    document.getElementById('preloader').style.display = 'block';  // Показать прелоадер
+}
+
+function hidePreloader() {
+    document.getElementById('preloader').style.display = 'none';  // Скрыть прелоадер
+}
+</script>
+
+<script>
+    // Открыть форму
+    function openAddForm() {
+        document.getElementById("add-form").style.display = "block";
+    }
+
+    // Проверка, чтобы кнопка "Добавить в таблицу" была активной, если все поля формы заполнены
+    function checkFormCompletion() {
+        const fullName = document.getElementById('full-name').value;
+        const photo = document.getElementById('photo').value;
+        const phone = document.getElementById('phone').value;
+        const email = document.getElementById('email').value;
+        const submitButton = document.getElementById('submit-button');
+
+        // Если все поля формы заполнены, активируем кнопку, иначе отключаем
+        if (fullName && photo && phone && email) {
+            submitButton.disabled = false;
+        } else {
+            submitButton.disabled = true;
+        }
+    }
+
+    // Функция для проверки и отправки формы
+    function validateAndSubmitForm() {
+        const urlPattern = /^(https?:\/\/)?([\w\-]+\.)+[a-z]{2,6}(\/[\w\-]*)*(\.[a-z]{2,6})?$/i;
+        const phonePattern = /^(8|\+375)[\s\(\)-]*\d{2}[\s\(\)-]*\d{3}[\s\(\)-]*\d{2}[\s\(\)-]*\d{2}$/;
+
+        const url = document.getElementById("photo").value;
+        const phone = document.getElementById("phone").value;
+        
+        let isValid = true;
+        let validationMessage = "";
+
+        if (!urlPattern.test(url)) {
+            document.getElementById("photo").style.borderColor = "red";
+            document.getElementById("photo").style.backgroundColor = "#f8d7da"; // Розовый фон
+            validationMessage += "Неверный URL. URL должен быть в формате https://example.com или http://example.com.<br>";
+            isValid = false;
+        } else {
+            document.getElementById("photo").style.borderColor = ""; // Сбрасываем
+            document.getElementById("photo").style.backgroundColor = ""; 
+        }
+
+        if (!phonePattern.test(phone)) {
+            document.getElementById("phone").style.borderColor = "red";
+            document.getElementById("phone").style.backgroundColor = "#f8d7da"; // Розовый фон
+            validationMessage += "Неверный номер телефона. Проверьте формат (например, +375(29)123-45-67).<br>";
+            isValid = false;
+        } else {
+            document.getElementById("phone").style.borderColor = ""; // Сбросить цвет рамки
+            document.getElementById("phone").style.backgroundColor = ""; // Сбросить фон
+        }
+
+        if (!isValid) {
+            document.getElementById("validation-result").innerHTML = validationMessage;
+        } else {
+            document.getElementById("validation-result").innerHTML = "";
+            submitForm();
+        }
+    }
+
+    function submitForm() {
+    const fullName = document.getElementById('full-name').value;
+    const photo = document.getElementById('photo').value;
+    const phone = document.getElementById('phone').value;
+    const email = document.getElementById('email').value;
+
+    // Создаем новую строку в таблице
+    const tbody = document.getElementById("contacts-tbody");
+    const newRow = document.createElement("tr");
+    newRow.classList.add("contact-row");
+
+    newRow.innerHTML = `
+        <td style="padding: 12px; text-align: left;">
+            <input type="checkbox" style="background-color: #333333; border: 1px solid #444444;">
+        </td>
+        <td style="padding: 12px; text-align: left;">
+            <img src="${photo}" alt="${fullName}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+        </td>
+        <td style="padding: 12px; text-align: left; color: #333333; font-weight: 500;">${fullName}</td>
+        <td style="padding: 12px; text-align: left;">
+            <a href="tel:${phone}" style="text-decoration: none;">${phone}</a>
+        </td>
+        <td style="padding: 12px; text-align: left;">
+            <a href="mailto:${email}" style="text-decoration: none;">${email}</a>
+        </td>
+    `;
+    
+    // Добавляем новую строку в таблицу
+    tbody.appendChild(newRow);
+
+    // Обновляем пагинацию
+    displayPage(currentPage);
+
+
+    // Скрыть форму и очистить поля
+    document.getElementById("add-form").style.display = "none";
+    document.getElementById("contact-form").reset();
+}
+
+</script>
+
+<script>
+    // Функция для премирования выбранных сотрудников
+    function rewardSelectedContacts() {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+    const rewardPopup = document.getElementById('reward-popup');
+    const rewardedNamesElement = document.getElementById('rewarded-names');
+
+if (checkboxes.length === 0) {
+    rewardedNamesElement.innerText = "Не выбраны сотрудники для премирования.";
+} else {
+    const selectedNames = Array.from(checkboxes).map(checkbox => {
+        // Для каждого выбранного чекбокса находим родительскую строку таблицы (tr), в которой находится этот чекбокс
+        const row = checkbox.closest('tr');
+        // Находим ячейку, которая находится в третьем столбце (имя сотрудника)
+        const nameCell = row.querySelector('td:nth-child(3)');
+        return nameCell ? nameCell.innerText : '';
+    });
+    // Обновляем элемент с id "rewarded-names", выводя список премированных сотрудников
+    rewardedNamesElement.innerText = `Премированы следующие сотрудники: ${selectedNames.join(', ')}.`;
+}
+
+
+    // Показываем всплывающее окно
+    rewardPopup.style.display = 'block';
+}
+
+function closeRewardPopup() {
+    document.getElementById('reward-popup').style.display = 'none';
+}
+    </script>
+
+{% endblock %}
+
+{% block title %}Poligone{% endblock %}

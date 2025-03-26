@@ -1,0 +1,985 @@
+/* Секция с автомобилями */
+.features {
+    padding: 0px;
+    text-align: center;
+}
+
+.car-header h1 {
+    font-size: 2.5em;
+    font-family: 'Didot', serif;
+    font-weight: lighter;
+    letter-spacing: 0.4em;
+    margin-bottom: 20px; /* Отступ снизу для заголовка */
+    color: #fcfcfc; 
+    position: relative; /* Для позиционирования псевдоэлемента */
+}
+
+.car-header h1::after {
+    content: ''; /* Псевдоэлемент не имеет текста */
+    display: block; /* Отображение как блочный элемент */
+    width: 50%; /* Ширина линии (можно настроить) */
+    height: 4px; /* Высота линии */
+    background-color: #edededa2; /* Цвет линии */
+    margin: 10px auto 0; /* Отступ сверху и снизу */
+    border-radius: 2px; /* Закругленные углы для линии */
+}
+
+/* Контейнер для списка автомобилей */
+.car-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Элемент автомобиля */
+.car-item {
+    background: linear-gradient(
+        135deg, /* Угол, под которым создается градиент */
+        rgba(255, 255, 255, 0.5) 0%, 
+        rgba(255, 255, 255, 0) 45%, 
+        rgba(0, 0, 0, 0.2) 50%,
+        rgba(255, 255, 255, 0) 55%,
+        rgba(255, 255, 255, 0.5) 100%
+    );
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 1s ease;
+    position: relative;
+    overflow: hidden; /* Обрезаем элементы, выходящие за пределы блока */
+}
+
+.car-item:hover {
+    transform: scale(1.05);
+}
+
+/* Стили для заголовков и текста */
+.car-item h2 {
+    font-size: 1.8em;
+    margin: 10px 0;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.car-item p {
+    font-size: 1em;
+    transition: transform 1s ease;
+    font-family: 'Playfair Display', serif;
+    color: #ffffff;
+    margin: 5px 0;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6; /* Увеличиваем межстрочный интервал для лучшей читаемости */
+}
+
+.car-item p:hover {
+    transform: scale(1.05);
+}
+
+/* Картинка автомобиля */
+.car-image {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 15px; /* Округленные углы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.car-image:hover {
+    transform: scale(1.03); /* Увеличение картинки при наведении */
+}
+
+/* Кнопка заказа */
+.btn-order {
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+    padding: 10px 20px;
+    background-color: #1A2421; /* Зеленый цвет кнопки */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    text-decoration: none;
+    transition: background-color 1s ease, transform 1s ease;
+    margin-top: 10px; /* Отступ сверху */
+}
+
+.btn-order:hover {
+    background-color: #4b4b4bb6; /* Серый цвет при наведении */
+    color: #e8e8e8b6;
+    transform: scale(1.05); /* Увеличение при наведении */
+}
+
+.btn-order:active {
+    transform: scale(0.95); /* Уменьшение при нажатии */
+}
+
+/* Стили для иконки корзины */
+.btn-order i {
+    margin-right: 5px; /* Отступ между иконкой и текстом */
+}
+
+
+
+
+
+
+
+
+
+
+/* Секция поиска */
+.search-section {
+    padding: 0px;
+    text-align: center;
+}
+
+.ser {
+    padding: 0px;
+    text-align: center;
+    background-color: #e8e8e8; /* Фоновый цвет для секции */
+    border-radius: 15px; /* Округленные углы */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.ser1 {
+    padding: 0px;
+    text-align: center;
+    background-color: #e8e8e8; /* Фоновый цвет для секции */
+    border-radius: 15px; /* Округленные углы */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Заголовок секции поиска */
+.search-header {
+    margin-bottom: 30px;
+}
+
+.search-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #e8e8e8;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-header h1::after {
+    content: ''; /* Псевдоэлемент не имеет текста */
+    display: block; /* Отображение как блочный элемент */
+    width: 50%; /* Ширина линии (можно настроить) */
+    height: 4px; /* Высота линии */
+    background-color: #e8e8e8; /* Цвет линии */
+    margin: 10px auto 0; /* Отступ сверху и снизу */
+    border-radius: 2px; /* Закругленные углы для линии */
+}
+
+/* Выделение категорий */
+.categories-highlight {
+    font-size: 1.2em;
+    color: #1a1919; /* Цвет текста */
+    background-color: #00000000; /* Фон для выделения категорий */
+    padding: 10px 15px;
+    border-radius: 50px;
+    display: inline-block; /* Выравниваем как блочный элемент */
+    margin-bottom: 20px;
+}
+
+/* Стиль формы */
+.search-form {
+    margin-bottom: 30px; /* Отступ снизу для формы */
+    color: #e8e8e8;
+}
+
+.search-form input[type="text"],
+.search-form input[type="search"],
+.search-form select {
+    padding: 10px 20px;
+    border-radius: 30px; /* Более круглое поле ввода */
+    border: 2px solid #e8e8e8; /* Цвет рамки */
+    font-size: 1em;
+    width: 100%; /* Ширина на 100% */
+    max-width: 400px; /* Максимальная ширина */
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-form input[type="text"]:focus,
+.search-form input[type="search"]:focus,
+.search-form select:focus {
+    border-color: #1A2421; /* Цвет рамки при фокусе */
+    box-shadow: 0 0 10px rgba(26, 36, 33, 0.3); /* Тень при фокусе */
+    outline: none;
+}
+
+.search-form button {
+    padding: 10px 20px;
+    background-color: #1A2421; /* Цвет кнопки */
+    color: white;
+    border: none;
+    border-radius: 30px; /* Закругленная кнопка */
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.search-form button:hover {
+    background-color: #4b4b4bb6; /* Цвет кнопки при наведении */
+    transform: scale(1.05);
+}
+
+/* Заголовок результатов поиска */
+.search-results-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    margin: 20px 0; /* Отступ сверху и снизу */
+}
+
+/* Контейнер для результатов поиска */
+.search-results {
+    display: flex;
+    flex-wrap: wrap; /* Позволяем элементам оборачиваться */
+    justify-content: center; /* Центрируем содержимое */
+}
+
+/* Элемент результата поиска */
+.search-item {
+    background-color: #f8f8f8;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px; /* Отступ между элементами */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Выравнивание текста */
+    width: calc(30% - 20px); /* Ширина элемента */
+}
+
+.search-item img {
+    width: 100%; /* Ширина картинки на 100% */
+    max-width: 100%;
+    border-radius: 15px; /* Округленные углы */
+}
+
+
+
+
+
+
+
+.filter-section {
+    padding: 0px;
+    text-align: center;
+}
+
+.fil {
+    padding: 0px;
+    text-align: center;
+    background-color: #e8e8e8; /* Фоновый цвет для секции */
+    border-radius: 15px; /* Округленные углы */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.fil1 {
+    padding: 0px;
+    text-align: center;
+    background-color: #e8e8e8; /* Фоновый цвет для секции */
+    border-radius: 15px; /* Округленные углы */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+/* Заголовок секции поиска */
+.filter-header {
+    margin-bottom: 30px;
+}
+
+.filter-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #333333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filter-header h1::after {
+    content: ''; /* Псевдоэлемент не имеет текста */
+    display: block; /* Отображение как блочный элемент */
+    width: 50%; /* Ширина линии (можно настроить) */
+    height: 4px; /* Высота линии */
+    background-color: #333; /* Цвет линии */
+    margin: 10px auto 0; /* Отступ сверху и снизу */
+    border-radius: 2px; /* Закругленные углы для линии */
+}
+
+/* Выделение категорий */
+.categories-highlight {
+    font-size: 1.2em;
+    color: #1a1919; /* Цвет текста */
+    background-color: #00000000; /* Фон для выделения категорий */
+    padding: 10px 15px;
+    border-radius: 50px;
+    display: inline-block; /* Выравниваем как блочный элемент */
+    margin-bottom: 20px;
+}
+
+/* Стиль формы */
+.filter-form {
+    margin-bottom: 30px; /* Отступ снизу для формы */
+}
+
+.filter-form input[type="text"],
+.filter-form input[type="search"],
+.filter-form select {
+    padding: 10px 20px;
+    border-radius: 30px; /* Более круглое поле ввода */
+    border: 2px solid #ddd; /* Цвет рамки */
+    font-size: 1em;
+    width: 100%; /* Ширина на 100% */
+    max-width: 400px; /* Максимальная ширина */
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filter-form input[type="text"]:focus,
+.filter-form input[type="search"]:focus,
+.filter-form select:focus {
+    border-color: #1A2421; /* Цвет рамки при фокусе */
+    box-shadow: 0 0 10px rgba(26, 36, 33, 0.3); /* Тень при фокусе */
+    outline: none;
+}
+
+.filter-form button {
+    padding: 10px 20px;
+    background-color: #1A2421; /* Цвет кнопки */
+    color: white;
+    border: none;
+    border-radius: 30px; /* Закругленная кнопка */
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.filter-form button:hover {
+    background-color: #4b4b4bb6; /* Цвет кнопки при наведении */
+    transform: scale(1.05);
+}
+
+/* Заголовок результатов поиска */
+.filter-results-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    margin: 20px 0; /* Отступ сверху и снизу */
+}
+
+/* Контейнер для результатов поиска */
+.filter-results {
+    display: flex;
+    flex-wrap: wrap; /* Позволяем элементам оборачиваться */
+    justify-content: center; /* Центрируем содержимое */
+}
+
+/* Элемент результата поиска */
+.filter-item {
+    background-color: #f8f8f8;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px; /* Отступ между элементами */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Выравнивание текста */
+    width: calc(30% - 20px); /* Ширина элемента */
+}
+
+.filter-item img {
+    width: 100%; /* Ширина картинки на 100% */
+    max-width: 100%;
+    border-radius: 15px; /* Округленные углы */
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Основной контейнер для страницы отзыва */
+.review-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Поднимаем блок выше */
+    padding-top: 130px; /* Отступ сверху */
+    background-image: url('/media/static/mam.png'); /* Задний фон для страницы отзыва */
+    background-size: cover;
+    background-position: center;
+    background-clip: padding-box; /* Фон будет виден только в пределах padding */
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Полупрозрачный наложенный блок */
+.review-overlay {
+    background-color: rgba(255, 255, 255, 0.375); /* Сделаем фон чуть более плотным */
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(12px); /* Чуть более сильное размытие */
+    max-width: 500px;
+    width: 100%;
+    margin: 0 20px; /* Немного отступов по бокам для мобильных устройств */
+}
+
+/* Оформление блока отзыва */
+.review-box {
+    text-align: center;
+}
+
+/* Заголовок */
+.review-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #333333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Контейнер для рейтинга */
+.rating-container-f {
+    margin: 10px 10px; /* Отступы сверху и снизу */
+    text-align: center;
+}
+
+/* Оформление звездного рейтинга */
+.star-rating-f {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.star-rating-f input {
+    display: none; /* Скрываем радиокнопки */
+}
+
+.star-f {
+    font-size: 60px; /* Размер звезд */
+    color: #a7a7a7; /* Цвет неактивных звезд */
+    cursor: pointer;
+    transition: color 0.3s; /* Плавный переход цвета */
+}
+
+/* Цвет звезд при наведении и выборе */
+.star-f:hover,
+.star-rating-f input:checked ~ .star-f {
+    color: #e5b25f; /* Цвет активных звезд */
+}
+
+/* Поля ввода (в том числе поле отзыва) */
+.review-box form textarea,
+.review-box form input {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 12px; /* Более элегантные закругленные края */
+    background-color: #fafafa; /* Мягкий фон */
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05); /* Легкий внутренний тень для объема */
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    resize: vertical; /* Ограничение возможности увеличения поля только по вертикали */
+    min-height: 120px; /* Увеличиваем минимальную высоту для textarea */
+}
+
+/* Кнопка отправки отзыва */
+.review-button-f {
+    background-color: #312b28;
+    color: white;
+    padding: 14px 20px; /* Сделаем кнопку чуть больше */
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 10px; /* Более плавные края */
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.review-button-f:hover {
+    background-color: #312b285d;
+    color: #f7f7f7c4;
+}
+
+/* Сообщение об ошибке */
+.error-message {
+    color: red;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Основные стили для страницы отзывов */
+.reviews-section {
+    padding: 40px;
+    font-family: 'Roboto', sans-serif;
+    background-image: url('/media/static/nor.png');
+    background-size: cover;
+    background-position: center;
+    height: 170vh;
+}
+
+/* Заголовок */
+.reviews-section h1 {
+    font-size: 2.5em;
+    font-family: 'Playfair Display', serif;
+    font-weight: lighter;
+    margin-bottom: 20px; /* Отступ снизу для заголовка */
+    position: relative; /* Для позиционирования псевдоэлемента */
+    color: #ffffff;
+}
+
+.reviews-section h1::after {
+    content: ''; /* Псевдоэлемент не имеет текста */
+    display: block; /* Отображение как блочный элемент */
+    width: 50%; 
+    height: 4px; /* Высота линии */
+    background-color: #ffffff; /* Цвет линии */
+    margin: 10px auto 0; /* Отступ сверху и снизу */
+    border-radius: 2px; /* Закругленные углы для линии */
+}
+
+.review-icon {
+    font-size: 24px; 
+    color: #f3c273; 
+    margin-bottom: 10px; 
+}
+
+/* Контейнер для отзывов */
+.reviews-container {
+    display: flex; /* Используем flexbox для горизонтального расположения */
+    overflow-x: auto; /* Прокрутка по горизонтали */
+    padding: 20px 0; /* Отступы сверху и снизу */
+    background: radial-gradient(#9896831c, #5a47570b 60%); 
+    border-radius: 30px;
+    background-color: #f1f1f100;
+    backdrop-filter: blur(10);
+
+}
+
+/* Стилизация полосы прокрутки для WebKit (Chrome, Safari) */
+.reviews-container::-webkit-scrollbar {
+    height: 8px; /* Высота полосы прокрутки */
+}
+
+/* Стилизация бегунка */
+.reviews-container::-webkit-scrollbar-thumb {
+    background-color: #888; 
+    border-radius: 10px; /* Закругленные углы бегунка */
+}
+
+/* Стилизация бегунка при наведении */
+.reviews-container::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Цвет бегунка при наведении */
+}
+
+/* Стилизация фона полосы прокрутки */
+.reviews-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.5); /* Цвет фона полосы прокрутки */
+    border-radius: 10px; /* Закругленные углы фона полосы прокрутки */
+}
+
+/* Стиль карточки отзыва */
+.review-card {
+    min-width: 300px; /* Минимальная ширина карточки */
+    margin: 0 10px; /* Отступы между карточками */
+    background-color: rgba(255, 255, 255, 0.932);
+    background-size: cover; /* Заставляем изображение занимать весь контейнер */
+    background-position: center; /* Центрируем изображение */
+    border-radius: 15px; /* Округленные углы */
+    padding: 20px; /* Внутренние отступы */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для карточки */
+    transition: transform 0.3s ease, box-shadow 1s ease; /* Плавный эффект при наведении */
+}
+
+/* Эффект при наведении на карточку */
+.review-card:hover {
+    transform: translateY(-5px); /* Подъем карточки вверх */
+    box-shadow: 0 4px 20px rgba(0.5, 0.5, 0.5, 0.6); /* Увеличение тени */
+}
+
+/* Имя и дата отзыва */
+.review-name {
+    font-size: 1.5em;
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.review-date {
+    font-size: 0.9em;
+    color: #777;
+}
+
+/* Разделительная линия между текстом и рейтингом */
+.divider {
+    height: 2px; /* Высота линии */
+    background-color: #cccccc; /* Цвет линии */
+    margin: 10px 0; /* Отступы сверху и снизу */
+}
+
+/* Стили для звезд */
+.review-rating {
+    margin: 10px 0; /* Отступы сверху и снизу */
+}
+
+.star {
+    font-size: 20px; /* Размер звезд */
+    color: #f3c273; /* Цвет звезд */
+}
+
+/* Текст отзыва */
+.review-text {
+    font-size: 1em;
+    color: #555;
+}
+
+/* Кнопка добавления отзыва */
+.add-feedback-button {
+    font-family: 'Playfair Display', serif;
+    position: relative; /* Для позиционирования псевдоэлемента */
+    padding: 10px 15px;
+    font-size: 20px;
+    background-color: #312b28; /* Цвет кнопки */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Закругленные углы */
+    cursor: pointer;
+    transition: background-color 1s ease; /* Плавный переход */
+}
+
+.add-feedback-button:hover {
+    background-color: #312b285d; /* Цвет при наведении */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Основной контейнер для страницы бронирования */
+.booking-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/media/static/korz.png'); /* Задний фон */
+    background-size: cover;
+    background-position: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Полупрозрачный наложенный блок */
+.booking-overlay {
+    background-color: rgba(255, 255, 255, 0.445); /* Мягкая прозрачность */
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+/* Оформление блока бронирования */
+.booking-box {
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Заголовок */
+.booking-box h1 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    color: #333;
+}
+
+/* Поля ввода */
+.booking-box form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+}
+
+/* Кнопка бронирования */
+.booking-button {
+    background-color: #8b7465;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.booking-button:hover {
+    background-color: #8b746585;
+    color: #f7f7f7c4;
+}
+
+/* Сообщение об ошибке */
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+/* Сообщение об успешном бронировании в виде ссылки */
+.success-message {
+    display: block;
+    color: #ffffff; /* Зеленый цвет для ссылки */
+    margin-top: 10px;
+    padding: 15px;
+    font-size: 16px;
+    background-color: #095f099f; /* Светлый зеленый фон */
+    border: 1px solid #095f099f; /* Зеленая граница */
+    border-radius: 10px;
+    text-decoration: none; /* Убираем подчеркивание ссылки */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Плавный переход при наведении */
+    text-align: center;
+}
+
+.success-message:hover {
+    background-color: rgba(11, 86, 11, 0.507); /* Меняем фон при наведении */
+    color: #ffffff6d; /* Темнее цвет текста */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Основной контейнер для заказов */
+.orders-container {
+    border-radius: 10px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/media/static/banner_car.png'); /* Задний фон */
+    background-size: cover;
+    background-position: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Полупрозрачный наложенный блок */
+.orders-overlay {
+    background-color: rgba(255, 255, 255, 0.359); /* Легкая прозрачность */
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    max-width: 700px;
+    width: 50%;
+}
+
+/* Список заказов */
+.orders-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Каждый элемент заказа */
+.order-item {
+    background-color: #f9f9f993;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Оформление кнопок */
+.order-actions {
+    margin-top: 15px;
+}
+
+.order-button {
+    background-color: #4A444B;
+    color: white;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: background-color 1s ease;
+}
+
+.order-button:hover {
+    background-color: #4a444b74;
+    color: #f7f7f7c4;
+}
+
+/* Кнопка удаления */
+.delete-button {
+    background-color: #D9534F;
+}
+
+.delete-button:hover {
+    background-color: #c9302c;
+}
+
+/* Заголовок */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #333;
+}
+
+/* Заголовок каждого заказа */
+h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Секция изменения заказа */
+.edit-order-section {
+    padding: 40px;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #c6c6c6c6; /* Светлый фон для секции */
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.312); /* Лёгкая тень для создания объёма */
+    font-family: 'Roboto', sans-serif; /* Основной шрифт */
+}
+
+/* Заголовок секции */
+.edit-order-title {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif; /* Элегантный шрифт для заголовка */
+    color: #333;
+}
+
+/* Форма редактирования */
+.edit-order-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Расстояние между элементами формы */
+}
+
+/* Группы полей */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Метки полей */
+.form-label {
+    font-size: 1.2em;
+    font-family: 'Playfair Display', serif;
+    color: #666;
+}
+
+/* Поля ввода */
+.form-input {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+/* При фокусе поле выделяется */
+.form-input:focus {
+    border-color: #44515a; /* Цвет при фокусе */
+}
+
+/* Кнопка отправки формы */
+.form-button {
+    padding: 10px 20px;
+    background-color: #2a2e31;
+    color: white;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Анимация кнопки при наведении */
+.form-button:hover {
+    background-color: #1b272f34;
+    transform: scale(1.05); /* Небольшое увеличение кнопки при наведении */
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .edit-order-section {
+        padding: 20px;
+    }
+
+    .form-button {
+        font-size: 1em;
+        padding: 10px;
+    }
+}
+

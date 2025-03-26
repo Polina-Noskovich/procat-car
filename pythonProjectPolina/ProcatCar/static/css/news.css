@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+
+
+.news-section {
+    background-size: cover;
+    padding: 20px;
+}
+
+.news-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Размещает блоки в две колонки */
+}
+
+.new-ti h1::after {
+    content: ''; /* Псевдоэлемент не имеет текста */
+    display: block; /* Отображение как блочный элемент */
+    width: 30%;
+    height: 4px; 
+    background-color: #ecedefc6; 
+    margin: 10px auto -30px; /* Отступ сверху и снизу */
+    border-radius: 2px; 
+}
+
+.new-ti h1:hover {
+    color: #6c6c6c; 
+}
+
+.news-item {
+    background: linear-gradient(
+        135deg, /* Угол, под которым создается градиент */
+        rgba(255, 255, 255, 0.404) 0%, 
+        rgba(255, 255, 255, 0) 15%, 
+        rgba(255, 255, 255, 0.407) 100%
+    );
+    border-radius: 10px;
+    margin: 10px;
+    padding: 15px;
+    width: calc(50% - 50px); /* Устанавливаем ширину блока (50% - отступы) */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Применяем overflow */
+}
+
+.news-header {
+    font-family: 'Playfair Display', serif; /* Шрифт заголовка */
+    display: flex; /* Используем flexbox для заголовка */
+    align-items: center; /* Центрируем по вертикали */
+    margin-bottom: 10px; /* Отступ снизу для разделения с контентом */
+}
+.news-divider {
+    border: 1px solid #ccc; /* Цвет линии */
+    margin-bottom: 20px; /* Отступ снизу для отделения от новостей */
+}
+
+.news-image-container {
+    margin-right: 15px; /* Отступ справа от изображения */
+}
+
+.news-image {
+    width: 150px; /* Увеличиваем ширину изображения */
+    height: auto; /* Автоматическая высота */
+    border-radius: 10px;
+}
+
+
+
+.news-title {
+    font-family: 'Playfair Display', serif; /* Шрифт заголовка */
+    font-size: 1.5em; /* Размер шрифта заголовка */
+    margin: 0; /* Убираем отступы */
+    color: white;
+}
+
+.news-divider {
+    border: none; /* Убираем стандартный стиль линии */
+    border-top: 1px solid #e0e0e0; 
+    margin: 10px 0; /* Отступы вокруг линии */
+}
+
+.news-content {
+    overflow: hidden; /* Применяем overflow для блока с текстом */
+}
+
+.news-description {
+    overflow: hidden; /* Применяем overflow для описания */
+    text-overflow: ellipsis; /* Отображаем многоточие */
+    white-space: nowrap; /* Запрещаем перенос текста */
+    font-size: 1em;
+    color: white;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.407)); /* Градиент для кнопки */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    position: relative;
+    transition: all 0.3s;
+    overflow: hidden; /* Обеспечивает плавный переход */
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.407), rgba(255, 255, 255, 0)); /* Изменение цвета при наведении */
+    transform: translateY(-2px); /* Поднимаем кнопку при наведении */
+    color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Тень при наведении */
+}
+
+.arrow {
+    margin-left: 5px; /* Отступ между текстом и стрелкой */
+    transition: transform 0.3s; /* Плавный переход для стрелки */
+}
+
+.btn:hover .arrow {
+    transform: translateX(5px); /* Двигаем стрелку при наведении */
+}
+
+
+
+
+
+.article {
+    padding: 20px;
+    background: linear-gradient(
+        135deg, /* Угол, под которым создается градиент */
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.407) 100%
+    );
+    max-width: 800px; /* Ограничиваем максимальную ширину */
+    margin: 0 auto; /* Центрируем статью */
+    border-radius: 10px; /* Сглаженные углы */
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+.article h1 {
+    font-family: 'Playfair Display', serif; /* Шрифт заголовка */
+    font-size: 2.5em; /* Размер шрифта */
+    font-weight: bold; /* Жирный шрифт */
+    color: #d3d3d3; /* Цвет текста */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Тень текста */
+    margin-bottom: 20px; /* Отступ снизу */
+    text-align: center; /* Центрируем заголовок */
+}
+
+.article-content {
+    display: flex; /* Используем flexbox для макета */
+    align-items: flex-start; /* Выровнять элементы по верхнему краю */
+}
+
+.article-image {
+    width: 350px; 
+    height: auto; 
+    margin-right: 20px; 
+    border-radius: 40px; 
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.099);
+}
+
+.article-text {
+    column-count: 2; 
+    column-gap: 20px;
+    column-width: 100px;
+    font-size: 1em; 
+    margin-top: 40px;
+}
+
+.article-text p {
+    margin: 0 0 20px; /* Убираем верхний отступ, добавляем нижний */
+    text-align: center; 
+    background: radial-gradient(rgba(255, 255, 255, 0.407), rgba(255, 255, 255, 0)); 
+    color: rgba(255, 255, 255, 0.779);
+    padding: 20px;
+    border: 1px #6d6d6d00; 
+    border-radius: 15px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    transition: background-color 1s, transform 0.4s; /* Плавный переход */
+}
+
+.article-text p:hover {
+    background: radial-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)); 
+    background-color: #48484800; 
+    transform: translateY(-2px); /* Поднимаем абзац при наведении */
+    color: rgba(255, 255, 255, 0.677);
+}
+
+.btn.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.407)); /* Градиент для кнопки */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.btn.back-button:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.407), rgba(255, 255, 255, 0)); 
+    color: white;
+    transform: translateY(-2px); /* Поднимаем кнопку при наведении */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Тень при наведении */
+}

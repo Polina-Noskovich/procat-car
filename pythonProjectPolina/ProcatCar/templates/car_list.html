@@ -1,0 +1,105 @@
+{% extends 'layout.html' %}
+
+{% block urlContent %}
+<section style="background-color: #e8e8e800; width: 1200px;" class="features">
+    <br><br><br><br><br>
+    <div class="car-header">
+        <h1></i> Наши автомобили</h1>
+    </div>
+    <div class="car-list" id="car-list">
+        {% for item in cars %}
+            <div class="car-item">
+                <h2>{{ item.car.mark }}</h2>
+                <img width="300" src="{{ item.car.contactimg.url }}" alt="{{ item.car.model }}" class="car-image">
+                <p class="car-model"><strong>Модель:</strong> {{ item.car.model }}</p>
+                <p class="car-year"><strong>Год выпуска:</strong> {{ item.car.year }}</p>
+                <p class="car-price"><strong>Стоимость автомобиля:</strong> {{ item.car.price }} руб.</p>
+                <p class="car-daily-rent"><strong>Суточная стоимость проката:</strong> {{ item.car.daily_rent }} руб.</p>
+                <a href="{% url 'add_to_bron' item.car.id %}" class="btn btn-order">
+                    <i class="fas fa-shopping-cart"></i> В заказ
+                </a><br><br>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Навигация с кнопками "Предыдущая" и "Следующая" -->
+    <div class="pagination" id="pagination">
+        <button id="prevBtn" class="pagination-btn">← Предыдущая</button>
+        <div id="pageNumbers"></div>
+        <button id="nextBtn" class="pagination-btn">Следующая →</button>
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const itemsPerPage = 3;
+    const carItems = document.querySelectorAll('.car-item');
+    const totalPages = Math.ceil(carItems.length / itemsPerPage); //округляет результат до ближайшего целого числа в большую сторону, чтобы учесть неполные страницы
+    const paginationContainer = document.getElementById('pageNumbers');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    let currentPage = 1;
+
+    function showPage(page) {
+        // Скрыть все элементы
+        carItems.forEach((item, index) => {
+            // должен ли текущий элемент отображаться на данной странице
+            item.style.display = (index >= (page - 1) * itemsPerPage && index < page * itemsPerPage) ? 'block' : 'none';
+        });
+    }
+
+    function createPagination() {
+        paginationContainer.innerHTML = '';  // Очистить текущие кнопки пагинации
+
+        // Добавление кнопок навигации
+        for (let i = 1; i <= totalPages; i++) {
+            const button = document.createElement('button');
+            button.textContent = i;
+            button.addEventListener('click', () => {
+                currentPage = i;
+                showPage(i);
+                updatePaginationButtons(i);
+            });
+            paginationContainer.appendChild(button);
+        }
+
+        updatePaginationButtons(currentPage);
+    }
+
+    function updatePaginationButtons(page) {
+        const buttons = paginationContainer.querySelectorAll('button');
+        buttons.forEach(button => button.classList.remove('disabled'));
+
+        // Деактивировать кнопку для текущей страницы
+        buttons[page - 1].classList.add('disabled');
+
+        // Обновить состояние стрелок
+        prevBtn.classList.toggle('disabled', page === 1);
+        nextBtn.classList.toggle('disabled', page === totalPages);
+    }
+
+    prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            showPage(currentPage);
+            updatePaginationButtons(currentPage);
+        }
+    });
+
+    nextBtn.addEventListener('click', () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            showPage(currentPage);
+            updatePaginationButtons(currentPage);
+        }
+    });
+
+    // Изначально показываем первую страницу
+    showPage(currentPage);
+    createPagination();
+});
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block urlContent %}
+    <h1>Update Order Item</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update</button>
+    </form>
+{% endblock %}
+
+{% block title %}Update Order Item{% endblock %}

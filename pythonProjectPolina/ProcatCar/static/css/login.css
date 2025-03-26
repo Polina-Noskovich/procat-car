@@ -1,0 +1,136 @@
+/* Контейнер для всей страницы */
+.login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/media/static/mont.png'); 
+    border-radius: 15px; /* Плавные края для полей ввода */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    font-family: 'Roboto', sans-serif; /* Элегантный и утонченный шрифт */
+}
+
+/* Полупрозрачный наложенный блок */
+.overlay {
+    background-color: rgba(255, 255, 255, 0.75); /* Более мягкая прозрачность */
+    padding: 50px;
+    border-radius: 20px; /* Закругление более плавное */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Легкая тень для объема */
+    backdrop-filter: blur(10px); /* Эффект размытия для фона */
+}
+
+/* Оформление блока авторизации */
+.login-box {
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Заголовок */
+.login-box h1 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    font-weight: 400; /* Сделаем заголовок менее жирным */
+    color: #333; /* Более нейтральный цвет */
+}
+
+/* Поля ввода */
+.login-box form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: 1px solid #ddd; /* Легкая, ненавязчивая граница */
+    border-radius: 8px; /* Плавные края для полей ввода */
+    background-color: #f9f9f9; /* Мягкий фон для полей */
+    box-sizing: border-box;
+}
+
+/* Кнопка входа */
+.login-button {
+    background-color: #A2653E; /* Чуть светлее для минималистичности */
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 8px; /* Закругленные края кнопки */
+    margin-top: 15px;
+    transition: background-color 0.3s ease; /* Плавное изменение цвета */
+}
+
+.login-button:hover {
+    background-color: #a2643e86; /* Плавный эффект наведения */
+    color: #f7f7f7c4; /* Серые ссылки */
+}
+
+/* Ссылки */
+.signup-link, .forgot-link {
+    display: block;
+    margin-top: 10px;
+    color: #777; /* Серые ссылки */
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s ease; /* Плавное изменение цвета */
+}
+
+.signup-link:hover, .forgot-link:hover {
+    color: #333; /* При наведении ссылки становятся чуть темнее */
+}
+
+/* Адаптивность для небольших экранов */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 20px;
+    }
+    .overlay {
+        padding: 30px;
+    }
+    .login-box h1 {
+        font-size: 22px;
+    }
+}
+
+
+/* Оформление ошибок */
+.error-box {
+    background-color: rgba(255, 0, 0, 0.1); /* Светлый красный фон для блока ошибок */
+    color: #cc0000; /* Красный текст для ошибок */
+    padding: 15px;
+    border-radius: 8px; /* Закругленные углы */
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.error-box p {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.error-box ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.error-box li {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+
+
+.reg-box form input {
+    width: 60%;
+    padding: 5px;
+    margin: 5px 0;
+    font-size: 16px;
+    border: 1px solid #ddd; /* Легкая, ненавязчивая граница */
+    border-radius: 8px; /* Плавные края для полей ввода */
+    background-color: #f9f9f9; /* Мягкий фон для полей */
+    box-sizing: border-box;
+}
+
+
+

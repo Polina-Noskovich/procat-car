@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анимация при скроллинге</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+#scroll-container {
+    height: 200vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.content {
+    padding: 50px;
+    text-align: center;
+}
+
+.animation-section {
+    position: relative;
+    height: 80vh;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.road {
+    width: 80%;
+    height: 200px;
+    background: linear-gradient(to right, #333 5%, #555 100%);
+    position: relative;
+}
+
+#car {
+    position: absolute;
+    left: -200px;
+    width: 100px;
+    transition: left 2s ease;
+}
+
+#car-rental-sign {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2em;
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+@media (max-width: 600px) {
+    #car {
+        width: 70px;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <section id="scroll-container">
+        <div class="content">
+            <h1>Добро пожаловать!</h1>
+            <p>Прокрутите вниз, чтобы увидеть анимацию.</p>
+        </div>
+        <div class="animation-section">
+            <div class="road">
+                <img src="car.png" alt="Машина" id="car">
+                <div class="sign" id="car-rental-sign">Car rental</div>
+            </div>
+        </div>
+        <div class="content">
+            <h2>Использование геолокации</h2>
+            <p id="location-info"></p>
+        </div>
+    </section>
+
+    <script>
+        window.addEventListener('scroll', function () {
+    const car = document.getElementById('car');
+    const sign = document.getElementById('car-rental-sign');
+    const scrollPosition = window.scrollY;
+    
+    // Анимация машины при скроллинге
+    if (scrollPosition > 300 && scrollPosition < 500) {
+        car.style.left = (scrollPosition - 300) * 0.5 + 'px';  // Машина двигается вправо
+    }
+    
+    // Появление знака "Car rental"
+    if (scrollPosition > 450) {
+        sign.style.opacity = 1;
+    } else {
+        sign.style.opacity = 0;
+    }
+});
+
+// Использование API геолокации
+if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        document.getElementById('location-info').innerText = `Ваше местоположение: Широта ${lat}, Долгота ${lon}`;
+    }, function(error) {
+        document.getElementById('location-info').innerText = "Не удалось определить местоположение.";
+    });
+} else {
+    document.getElementById('location-info').innerText = "Геолокация не поддерживается в вашем браузере.";
+}
+
+    </script>
+</body>
+</html>

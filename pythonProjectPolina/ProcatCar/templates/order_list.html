@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block urlContent %}
+<section class="orders-container">
+  <div class="orders-overlay">
+    <h1 style="font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #333333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1)">Ваши заказы</h1>
+    <ul class="orders-list">
+      {% for order in orders %}
+          <li class="order-item">
+              <h3>Дата заказа: {{ order.date }}</h3>
+              <p>Сумма без штрафов и скидок: {{ order.base_cost|floatformat:2 }} рублей</p>
+              <p>Штраф: {{ order.fine_amount|floatformat:2 }} рублей</p>
+              <p>Скидка: {{ order.discount|floatformat:2 }} рублей</p>
+              <p>Итоговая стоимость проката: {{ order.total_cost|floatformat:2 }} рублей</p>
+              
+              <!-- Кнопки действий -->
+              <div class="order-actions">
+                <a href="{% url 'update_order' order_id=order.order.id %}" class="order-button">Изменить</a>
+                
+                <form method="post" action="{% url 'delete_order' order_id=order.order.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="order-button delete-button">Удалить</button>
+                </form>
+              </div>
+          </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endblock %}
+
+{% block title %}Ваши заказы{% endblock %}

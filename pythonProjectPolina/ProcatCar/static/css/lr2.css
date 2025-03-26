@@ -1,0 +1,799 @@
+/* Стили для прелоадера 
+#preloader {
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    position: relative;
+    background-color: #0f1113; 
+}
+
+.elegant-lines {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.infinity-path {
+    animation: draw 2.5s ease-in-out infinite, fade 2.5s ease-in-out;
+}*/
+
+/* Анимация движения по траектории восьмерки */
+@keyframes draw {
+    0% {
+        stroke-dasharray: 0 200;
+    }
+    50% {
+        stroke-dasharray: 100 200;
+    }
+    100% {
+        stroke-dasharray: 200 200;
+    }
+}
+
+/* Анимация плавного исчезновения и появления */
+@keyframes fade {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Стили для точек в слове "Загрузка" */
+#preloader p {
+    font-size: 16px;
+    color: #fff;
+    margin-top: 10px;
+    font-family: 'Arial', sans-serif;
+}
+
+#dots {
+    display: inline-block;
+    animation: dots 1.5s steps(1,end) infinite;
+}
+
+@keyframes dots {
+    0%, 20% {
+        content: '.';
+    }
+    40% {
+        content: '..';
+    }
+    60% {
+        content: '...';
+    }
+    80%, 100% {
+        content: '';
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Контейнер анимации */
+.animation-container {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    margin-top: 50px;
+}
+
+/* Здание */
+.building {
+    position: absolute;
+    left: 19%;
+    bottom: 0;
+    width: 220px;
+    height: 200px;
+    background-color: #333;
+    border: 5px solid #222;
+    border-radius: 30px 30px 15px 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+    z-index: 1;
+}
+
+.door {
+    position: absolute;
+    bottom: 0;
+    left: 30%;
+    width: 60px;
+    height: 100px;
+    background-color: #444;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+/* Человек */
+.person {
+    position: absolute;
+    bottom: 0;
+    left: -25px;
+    width: 30px;
+    height: 90px;
+    animation: enter-building 2s ease-in-out forwards, exit-as-car 4s ease-in-out forwards 2.5s;
+}
+
+.head {
+    width: 20px;
+    height: 20px;
+    background-color: #ffe0bd;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.body {
+    width: 20px;
+    height: 60px;
+    background-color: #000;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Машина */
+.car {
+    position: absolute;
+    bottom: 0;
+    left: 19%;
+    width: 220px;
+    height: 60px;
+    opacity: 0;
+    animation: show-car 0.000001s 3.5s forwards, drive-car 5s 4s ease-in-out forwards;
+}
+
+.car-body {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #000, #111);
+    border-radius: 30px 30px 15px 15px;
+    position: relative;
+}
+
+/* Багажник */
+.roof-rack {
+    position: absolute; /* Позиционирует элемент относительно машины */
+    top: -40px; /* Устанавливает его над машиной */
+    left: 42%; /* Центрирует по горизонтали */
+    transform: translateX(-50%); /* Сдвигает влево на половину ширины */
+    width: 150px; /* Ширина багажника */
+    height: 50px; /* Высота багажника */
+    background-color: #111; /* Цвет багажника (темно-серый) */
+    border-radius: 30px 30px 15px 15px;
+    clip-path: polygon(0 100%, 10% 0%, 80% 0%, 100% 100%); /* Создаем трапецию */
+}
+/* Окно машины */
+.window {
+    position: absolute;
+    top: 18px;
+    left: 30px;
+    width: 100px;
+    height: 50px;
+    background-color: #ddd;
+    border-radius: 10px;
+    clip-path: polygon(0 100%, 10% 0%, 80% 0%, 100% 100%); /* Создаем трапецию */
+}
+
+/* Человек внутри машины */
+.person-inside {
+    position: absolute;
+    top: 4px;
+    position: absolute;
+    bottom: 0;
+    left: 40px;
+    width: 30px;
+}
+
+.head-inside {
+    width: 20px;
+    height: 20px;
+    background-color: #ffe0bd;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.body-inside {
+    width: 20px;
+    height: 40px;
+    background-color: #000;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Колеса */
+.wheel {
+    width: 40px;
+    height: 40px;
+    background-color: #222;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -15px;
+}
+
+.front-wheel {
+    left: 25px;
+}
+
+.back-wheel {
+    right: 25px;
+}
+
+/* Фары */
+.headlights {
+    position: absolute;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    background-color: yellow;
+    opacity: 0;
+    border-radius: 50%;
+    right: 7px; /* Позиция фары справа */
+    animation: blink-headlights 3s 6s infinite alternate;
+}
+
+.headlights:before, .headlights:after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    background-color: rgba(255, 255, 100, 0.4);
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.headlights:before {
+    top: -15px;
+    right: 110%;
+    transform: rotate(-15deg);
+}
+
+.headlights:after {
+    top: -15px;
+    right: 110%;
+    transform: rotate(15deg);
+}
+
+/* Анимации */
+@keyframes enter-building {
+    0% {
+        transform: translateX(-150px);
+    }
+    100% {
+        transform: translateX(60px);
+    }
+}
+
+@keyframes exit-as-car {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes show-car {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes drive-car {
+    0% {
+        left: 19%;
+    }
+    70% {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    100% {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes blink-headlights {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Плавное появление названия */
+.company-name {
+    position: absolute;
+    left: 50%;
+    top: 4050px;
+    transform: translateX(-50%);
+    font-family: 'Arial', sans-serif;
+    font-size: 2.5em;
+    color: #000;
+    opacity: 0;
+    animation: fade-in 8s 5s forwards;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Основные стили сцены */
+.rental-scene {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+/* Задний фон мегаполиса */
+.city-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/media/static/city.png') no-repeat center center;
+    background-size: cover;
+    z-index: 0;
+    transition: background 1s ease; /* Плавный переход фона */
+}
+
+/* Портал */
+.portal {
+    position: absolute;
+    right: 10%; /* Портал появляется справа */
+    bottom: -10px;
+    width: 500px;
+    height: 300px;
+    background: url('/media/static/port-2.png') no-repeat center center;
+    background-size: contain;
+    z-index: 1;
+    animation: move-portal 10s forwards ease-in-out, rotate-portal 5s infinite linear; /* Анимация перемещения и вращения портала */
+}
+
+/* Анимация вращения портала */
+@keyframes rotate-portal {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Человек */
+.person-1 {
+    position: absolute;
+    left: 10%;
+    bottom: 10px;
+    width: 140px;
+    height: 140px;
+    background: url('/media/static/byc.png') no-repeat center center;
+    background-size: contain;
+    z-index: 2;
+    animation: walk-to-portal 5s ease-in-out forwards, disappear 5s forwards; /* Увеличена длительность анимации */
+}
+
+/* Автомобиль */
+.car-1 {
+    position: absolute;
+    right: -150px; /* Автомобиль стартует за пределами экрана справа */
+    bottom: -27px;
+    width: 300px;
+    height: 200px;
+    background: url('/media/static/cc.png') no-repeat center center;
+    background-size: contain;
+    z-index: 1;
+    animation: car-drive 7s ease-in forwards; /* Замедлена анимация автомобиля */
+    opacity: 0; /* Сначала машина невидима */
+}
+
+/* Название компании */
+.company-name-1 {
+    position: absolute;
+    left: 50%; /* Центрирование по горизонтали */
+    transform: translateX(-50%); /* Центрирование по горизонтали */
+    bottom: 250px; /* Начальное положение */
+    font-size: 50px; /* Увеличен размер шрифта */
+    color: #fff; /* Цвет текста белый */
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Тень текста для выделения */
+    opacity: 1; /* Сделать надпись видимой */
+    z-index: 5; /* Увеличить z-index, чтобы она была выше других элементов */
+    animation: show-company-name 10s forwards ease-in-out, move-and-grow 2s 8s forwards; /* Добавлена новая анимация */
+}
+
+/* Задний фон природы */
+.nature-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff63;
+    background-size: cover;
+    z-index: 2;
+    opacity: 0; /* Сначала невидим */
+    animation: show-nature-background 8s forwards; /* Появление фона */
+}
+
+/* Анимация: человек идёт к порталу */
+@keyframes walk-to-portal {
+    0% {
+        left: 10%;
+    }
+    100% {
+        left: 100%; 
+        opacity: 0; 
+    }
+}
+
+/* Анимация автомобиля */
+@keyframes car-drive {
+    0% {
+        right: -150px; /* Автомобиль стартует за пределами экрана справа */
+        opacity: 0; /* Сначала невидима */
+    }
+    52% {
+        right: 42%;
+        opacity: 0; /* Машина остается невидимой */
+    }
+    60% {
+        opacity: 1; /* Машина становится видимой */
+    }
+    100% {
+        right: 100%; /* Машина уходит за пределы экрана */
+        opacity: 1; /* Машина видима */
+    }
+}
+
+/* Появление названия компании */
+@keyframes show-company-name {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Новая анимация для увеличения и смещения названия компании */
+@keyframes move-and-grow {
+    0% {
+        transform: translate(-50%, 0) scale(1); /* Начальное положение */
+    }
+    100% {
+        transform: translate(-50%, 100px) scale(1.5); /* Конечное положение с увеличением */
+    }
+}
+
+/* Анимация исчезновения человека */
+@keyframes disappear {
+    0% {
+        opacity: 1; /* Человек виден */
+    }
+    20% {
+        opacity: 1; /* Человек виден */
+    }
+    42% {
+        opacity: 1; /* Человек виден */
+    }
+    57% {
+        opacity: 0; /* Человек виден */
+    }
+    100% {
+        opacity: 0; /* Человек исчезает */
+    }
+}
+
+/* Появление фона природы */
+@keyframes show-nature-background {
+    0% {
+        opacity: 0;
+    }
+    60% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Анимация перемещения портала */
+@keyframes move-portal {
+    0% {
+        right: 10%; /* Начальная позиция портала */
+        bottom: -60px; /* Положение внизу */
+    }
+    50% {
+        right: 33%; /* Перемещается к центру */
+        bottom: -60px; /* Остается на месте по вертикали */
+        transform: translateX(50%); /* Центрируется */
+    }
+    100% {
+        right: 33%; /* Финальная позиция портала */
+        bottom: 20px; /* Поднимается вверх */
+        transform: translateX(50%); /* Центрируется */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Заголовки */
+h1.primer {
+    text-transform: uppercase; /* Заголовок прописными */
+    font-variant: small-caps; /* Капитель */
+    text-align: center;
+    font-family: 'Playfair Display', serif; 
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333;
+    letter-spacing: 0.05em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Параграфы */
+p.primer {
+    text-indent: 30px; /* Красная строка */
+    line-height: 1.7; /* Интерлиньяж - высота строки */
+    word-spacing: 0.15em; /* Интервал между словами */
+    letter-spacing: 0.02em; /* Интервал между символами */
+    font-family: 'Roboto', sans-serif; 
+    color: #555;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+/* Псевдоэлементы */
+p.primer::first-letter {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #3498db;
+}
+
+p.primer::before {
+    content: "‹‹ ";
+    font-weight: bold;
+    color: #555;
+}
+
+p.primer::after {
+    content: " ››";
+    font-weight: bold;
+    color: #555;
+}
+
+/* Ссылки */
+a.primer {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s ease; /* Плавное изменение цвета */
+}
+
+a.primer:hover {
+    color: #2ecc71;
+}
+
+/* Форма */
+input[type="text"].primer:focus {
+    outline: 2px solid #2ecc71;
+    transition: outline 0.3s ease;
+}
+
+input[type="text"].primer:required {
+    border: 2px solid #e74c3c;
+}
+
+input[type="text"].primer:disabled {
+    background-color: #ecf0f1;
+}
+
+input[type="checkbox"].primer:checked {
+    background-color: #363d39;
+}
+
+/* Таблицы */
+table.primer {
+    width: 60%;
+    border-collapse: collapse;
+    border-radius: 15px;
+    font-family: 'Roboto', sans-serif;
+}
+
+caption.primer {
+    caption-side: top;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+th.primer, td.primer {
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 15px;
+    text-align: center; /* Горизонтальное выравнивание */
+    vertical-align: middle; /* Вертикальное выравнивание */
+    transition: background-color 0.5s ease; /* Плавное изменение цвета */
+}
+
+th.primer {
+    background-color: #090909;
+    color: white;
+    font-size: 1.2em;
+}
+
+td.primer:empty {
+    background: linear-gradient(#29323475, #29323400); /* Изменение фона пустых ячеек */
+}
+
+tr.primer:nth-child(even) {
+    background-color: #dd8b8b4e;
+}
+
+tr.primer:hover {
+    background-color: #f0f0f0;
+}
+
+/* Списки */
+ul.primer {
+    list-style-type: none; /* Прячем маркеры списка */
+    padding-left: 0;
+}
+
+ul.primer li::before {
+    content: "\20aa "; /* Unicode символ для элегантного маркера */
+    color: #000000; /* Акцентный цвет */
+    font-size: 1.2em;
+}
+
+/* Кнопки */
+button.primer {
+    cursor: pointer;
+    background-color: #000000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Плавные эффекты */
+}
+
+button.primer:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px); /* Эффект поднятия при наведении */
+}
+
+/* Стили для выделения текста */
+::selection {
+    background-color: #524a4a;
+    color: white;
+}
+
+
+
+/* Медиа-запросы для адаптивности */
+@media screen and (max-width: 768px) {
+    h1.primer {
+        font-size: 1.8em;
+    }
+
+    p.primer {
+        font-size: 1em;
+    }
+}
+
+
+
+
+/* Секция с обтекаемым текстом */
+.float-example {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Плавающие элементы */
+.float-left {
+    float: left;
+    margin: 0 20px 20px 0; /* Отступ справа и снизу */
+    max-width: 200px; /* Максимальная ширина изображения */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень для эффекта плавучести */
+}
+
+.float-right {
+    float: right;
+    margin: 0 0 20px 20px; /* Отступ слева и снизу */
+    max-width: 300px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-left: 4px solid #252d32;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: #555;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень для эффекта плавучести */
+}
+
+/* Очищение обтекания */
+.float-example::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+
+
+p.primer {    font-size: 1.5em; /* Размер текста */    }   
+q.primer:lang(de) {    quotes: "\201E" "\201C";     }   
+q.primer:lang(en) {    quotes: "\201C" "\201D";    }   
+q.primer:lang(fr), q:lang(ru) { quotes: "\00AB" "\00BB";    }
+

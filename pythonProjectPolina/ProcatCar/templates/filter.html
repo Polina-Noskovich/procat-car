@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block urlContent %}
+    <section class="features" >
+      <h1>Поиск по маркам машин</h1>
+    <form method="get">
+        {{ form.as_p }}
+        <button type="submit">Фильтр</button>
+    </form>
+
+      {% if results %}
+        <h2>Результаты поиска</h2>
+        <ul>
+            {% for item in results %}
+            <div class="alert" >
+            <img width="300" src="{{ item.contactimg.url }}"></img>
+            <h3>Марка машины: {{ item.mark }} цена {{ item.price }}</h3>
+            <p>Модель машины: {{ item.model }}</p>
+            {% if is_customer %}
+        <a href="{% url 'add_to_bron' item.id %}" class="btn btn-warning">В заказ</a>
+      {% endif %}
+            </div>
+            {% empty %}
+                <li>Ничего не найдено</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    </section>
+{% endblock %}
+
+{% block title %}Фильтр{% endblock %}
+
+
+<i class="fas fa-search"></i>

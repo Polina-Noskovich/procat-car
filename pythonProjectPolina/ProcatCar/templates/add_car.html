@@ -1,0 +1,16 @@
+<!-- templates/add_car.html -->
+
+{% extends 'layout.html' %}
+
+{% block urlContent %}
+<section class="features">
+    <h1>Добавить машину</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+    </form>
+</section>
+{% endblock %}
+
+{% block title %}Добавить машину{% endblock %}

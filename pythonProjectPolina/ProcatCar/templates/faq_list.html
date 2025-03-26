@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block title %}Часто задаваемые вопросы{% endblock %}
+
+{% block urlContent %}
+<section class="faq-section">
+    <br><br><br><br>
+    <h1>Часто задаваемые вопросы</h1>
+    <div class="faq-container">
+        <ul class="faq-list">
+            {% for faq in faqs %}
+                <li class="faq-item">
+                    <details class="faq-details-container" >
+                        <summary class="faq-question">{{ faq.question }}</summary>
+                        <div class="faq-details">
+                            <p class="faq-date"><strong>Дата добавления:</strong> {{ faq.date_added|date:"d M Y" }}</p>
+                            <p class="faq-answer">{{ faq.answer }}</p>
+                        </div>
+                    </details>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock %}

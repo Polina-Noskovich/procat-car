@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block urlContent %}
+<section class="features" >
+  <h1>Заказы</h1>
+  <ul>
+    {% for order in orders %}
+      <li>
+        <h3>Ваши автомобили</h3>
+        <p>{{ order.date }}</p>
+        <ul>
+          {% for car in order.cars.all %}
+            <li>
+              {{ car.object.mark }} забронирован на {{ car.count }} часа за {{ car.object.price }} рублей
+              <br>
+              Штраф: {% with shtraf=car.object.shtraf_set.first %}{{ shtraf.cost|default:0 }}{% endwith %} рублей
+              <br>
+              Промокод: {{ active_discount|default:10 }} рублей
+              <br>
+              <!-- Update Button -->
+              <a href="{% url 'update_order_item' item_id=car.id %}">Update</a>
+              <!-- Delete Button -->
+              <form method="post" action="{% url 'delete_order_item' item_id=car.id %}" style="display:inline;">
+                {% csrf_token %}
+              </form>
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}
+
+{% block title %}Заказы{% endblock %}

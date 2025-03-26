@@ -1,0 +1,470 @@
+/* Секция для видео */
+.company-hero-section {
+    position: relative;
+    height: 120vh; /* Высота секции на всю высоту экрана */
+    width: 100vw; /* Ширина секции на всю ширину экрана */
+    overflow: hidden; /* Обрезаем все выходящее за пределы экрана */
+    margin: 0;
+    padding: 0;
+    align-items: center; /* Центрирование контента по вертикали */
+    justify-content: center; /* Центрирование контента по горизонтали */
+}
+
+.background-video {
+    position: absolute;
+    background-size: cover;
+    top: 50%;
+    left: 50%;
+    min-width: 100%; /* Заставляет видео занимать 100% ширины */
+    height: 100%; /* Заставляет видео занимать всю высоту родителя */
+    z-index: 1; /* Позиционируем видео на заднем плане */
+    transform: translate(-50%, -50%); /* Центрируем видео */
+}
+
+.company-hero-content {
+    position: absolute; /* Изменяем на absolute для размещения в верхней части */
+    top: 20px; /* Отступ сверху */
+    transform: translateX(-10%); /* Центрируем по горизонтали */
+    z-index: 1; /* Позиционируем контент на переднем плане */
+    text-align: center; /* Выравнивание текста по центру */
+    color: #ffffff; /* Цвет текста */
+    padding: 100px; /* Отступы вокруг текста */
+}
+
+.company-hero-content h1 {
+    font-family: 'Palatino', 'URW Palladio L', serif;
+    font-weight: lighter;
+    letter-spacing: 0em;
+    font-size: 150px;
+    color: #ffffff; /* Цвет текста */
+    margin: 100px 0px 0px 0px; 
+    text-shadow: 10px 10px 10px rgba(1, 1, 1, 1); /* Тень для текста (уменьшена) */
+    transition: font-size 1s ease; /* Плавный переход для изменения размера */
+    transform: translateX(10%); /* Центрируем по горизонтали */
+}
+
+.company-hero-content h1:hover {
+    font-size: 120px; /* Увеличиваем размер заголовка при наведении */
+    transition: font-size 1s ease; /* Плавный переход для изменения размера */
+}
+
+.company-hero-content p {
+    font-family: 'Baskerville', "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-weight: lighter;
+    letter-spacing: 0em;
+    transform: translateX(12%); /* Центрируем по горизонтали */
+    font-size: 40px;
+    margin: 30px; /* Убираем лишние отступы */
+    text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.897); /* Тень для текста (уменьшена) */
+}
+
+
+
+
+/* Стиль для секции с информацией */
+.info-block-1 {
+    height: 700px; /* Высота блока, можно регулировать */
+    overflow: hidden; /* Прятать всё, что выходит за пределы блока */
+    border-radius: 15px; /* Округленные углы */
+    background-image: url('/media/static/cart.png');
+    background-size: cover; /* Заставить изображение занимать весь блок */
+    background-position: center; /* Центрировать изображение */
+    position: relative; /* Позиционирование для полупрозрачного блока */
+    padding: 50px; /* Отступы внутри секции */
+    color: #fff; /* Цвет текста */
+    margin-top: 0px; /* Отступ сверху */
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.333); /* Тень */
+}
+
+/* Полупрозрачный блок с содержимым */
+.info-content-1 {
+    background-color: #ba9e889e; /* Полупрозрачный черный фон */
+    padding: 20px; /* Отступы внутри блока */
+    border-radius: 15px; /* Закругленные углы */
+    max-width: 600px; /* Максимальная ширина */
+    margin-left: auto; /* Центрирование блока */
+    margin-right: 0; /* Выравнивание блока вправо */
+    /* Удаление абсолютного позиционирования */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+/* Заголовок внутри блока */
+.info-content-1 h2 {
+    color: #080808;
+    font-family: 'Playfair Display', serif; /* Шрифт заголовка */
+    font-size: 2em; /* Размер шрифта заголовка */
+    margin-bottom: 15px; /* Отступ снизу */
+    text-shadow: 5px 5px 10px rgba(122, 122, 122, 0.897); /* Тень для текста (уменьшена) */
+}
+
+/* Параграфы внутри блока */
+.info-content-1 p {
+    color: #080808;
+    font-family: 'Roboto', sans-serif; /* Шрифт параграфов */
+    line-height: 1.5; /* Межстрочный интервал */
+    font-size: 1.1em; /* Размер шрифта заголовка */
+    margin: 10px 0; /* Отступы между параграфами */
+    text-shadow: 5px 5px 10px rgba(93, 93, 93, 0.897); /* Тень для текста (уменьшена) */
+}
+
+
+
+
+
+
+
+
+
+
+/* Основные стили секции */
+.car-history-section {
+    padding: 60px;
+    background-color: #1b1b1b; /* Темный фон */
+    color: #fff;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+}
+
+.car-history-section h1 {
+    font-size: 3em;
+    color: #f1f1f1;
+    font-family: 'Didot', serif;
+    font-weight: lighter;
+    letter-spacing: 0.3em;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+
+
+
+/* Временная линия */
+.timeline {
+    position: relative;
+    padding-left: 50px; /* Отступ для линии */
+    margin-top: 30px;
+}
+
+.timeline:before {
+    content: '';
+    position: absolute;
+    left: 50px; /* Расположение линии */
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background-color: #666; /* Светло-серая линия */
+    border-radius: 3px;
+}
+
+/* Овальные боксы для каждого элемента таймлайна */
+.timeline-item {
+    position: relative;
+    margin-bottom: 60px;
+    padding-left: 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.timeline-item:before {
+    content: '';
+    position: absolute;
+    left: 50px;
+    top: 0;
+    width: 25px;
+    height: 25px;
+    background-color: #1b1b1b;
+    border: 6px solid #666; /* Округлая точка */
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Контентные блоки */
+.timeline-content {
+    background-color: #2b2b2b; /* Темно-серый для боксов */
+    padding: 30px;
+    border-radius: 50px; /* Овальные боксы */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Мягкая тень */
+    max-width: 700px;
+    position: relative;
+}
+
+.timeline-content h3 {
+    font-size: 1.8em;
+    font-family: 'Didot', serif;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    color: #f1f1f1; /* Светлый текст заголовка */
+    margin-bottom: 10px;
+}
+
+.timeline-content p {
+    font-size: 1.2em;
+    color: #ccc; /* Светло-серый текст */
+    line-height: 1.6;
+}
+
+/* Мобильные стили */
+@media (max-width: 768px) {
+    .timeline-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 30px;
+    }
+
+    .timeline:before {
+        left: 30px;
+    }
+
+    .timeline-item:before {
+        left: 30px;
+    }
+
+    .timeline-content {
+        padding: 20px;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.6em;
+    }
+
+    .timeline-content p {
+        font-size: 1em;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Стили логотипа */
+img[alt="Логотип компании"] {
+    display: block;
+    margin: 10px auto;
+    border-radius: 100px;
+    transition: transform 1s ease-in-out;
+}
+
+img[alt="Логотип компании"]:hover {
+    transform: rotate(360deg) scale(1.1); /* Вращение и увеличение логотипа при наведении */
+}
+
+
+.certificate-container {
+    position: relative;
+    width: 50%;
+    margin: 40px auto;
+    padding: 120px;
+    background: linear-gradient(to bottom, #4d4a4a84, #f3f3f3); /* Градиентный фон */
+    border: 0px solid transparent; /* Прозрачная граница для эффекта */
+    text-align: center;
+    font-family: 'Playfair Display', italic;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень */
+    z-index: 1; /* Контейнер выше фона */
+}
+
+.certificate-header {
+    font-size: 28px;
+    color: #342c1d;
+    font-weight: bold;
+}
+
+.certificate-subheader {
+    font-size: 18px;
+    color: #333333;
+}
+
+.certificate-body {
+    font-size: 20px;
+    color: #000;
+    margin: 20px 0;
+}
+
+.certificate-seal {
+    width: 100px;
+    position: absolute;
+    bottom: 50px;
+    right: 80px;
+    z-index: 2; /* Печать поверх всего */
+}
+
+.certificate-signature {
+    font-size: 16px;
+    color: #666;
+    position: absolute;
+    bottom: 50px;
+    left: 80px;
+    z-index: 2; /* Подпись поверх фона */
+}
+
+.certificate-background {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    width: calc(100% + 35px); /* Учитываем padding контейнера */
+    height: calc(100% + 35px); /* Учитываем padding контейнера */
+    margin: -20px; /* Чтобы рамка совпадала с внешними границами контейнера */
+    opacity: 1; /* Полностью видимое фоновое изображение */
+    z-index: -1; /* Фон ниже содержимого контейнера */
+}
+
+.certificate-back {
+    position: absolute;
+    top: 50%; /* Отступ сверху */
+    left: 50%; /* Отступ слева */
+    width: 60%;
+    height: 60%;
+    opacity: 0.04; /* Прозрачное фоновое изображение */
+    transform: translate(-50%, -50%); /* Центрирование относительно середины */
+    z-index: -1;
+}
+
+
+
+.fot {
+    display: flex; /* Используем flexbox для горизонтального расположения */
+    justify-content: space-around; /* Распределяем карточки по контейнеру */
+    align-items: stretch; /* Убедимся, что карточки имеют одинаковую высоту */
+    background-image: url('/media/static/ll_1.jpeg'); 
+    background-size: cover; /* Заставляем изображение занимать весь контейнер */
+    background-position: center; /* Центрируем изображение */
+    padding: 20px; /* Отступы для контейнера */
+    border-radius: 0px; /* Округленные углы */
+    height: 50vh;
+    z-index: 5;
+}
+
+
+
+/* Секция с реквизитами компании */
+.company-requisites-section {
+    background-color: #f9f9f91b; /* Светлый фон для секции */
+    padding: 40px; /* Отступы внутри секции */
+    border-radius: 10px; /* Закругленные углы */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Тень для блока */
+    text-align: center; /* Центрирование текста */
+    margin: 20px auto; /* Центрирование секции */
+    max-width: 800px; /* Максимальная ширина */
+}
+
+/* Заголовок для реквизитов */
+.requisites-title {
+    font-size: 2.5em;
+    font-family: 'Didot', serif;
+    font-weight: lighter;
+    letter-spacing: 0.3em;
+    color: #3c3c3c;
+    margin-bottom: 15px; 
+    color: rgba(255, 255, 255, 0.729); 
+}
+
+/* Содержимое реквизитов */
+.requisites-content {
+    background-color: rgba(255, 255, 255, 0.729); /* Полупрозрачный белый фон */
+    padding: 20px; /* Отступы внутри блока */
+    border-radius: 10px; /* Закругленные углы */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Легкая тень */
+}
+
+
+
+
+
+/* Список адресов */
+.addresses-list {
+    flex: 1;
+    padding-right: 20px;
+    text-align: left;
+    font-size: 1em;
+    font-family: 'Didot', serif;
+    letter-spacing: 0.1em;
+    margin-bottom: 15px; 
+    color: #333333; 
+
+}
+
+/* Стили для ссылок */
+.addresses-list a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.addresses-list a:hover {
+    color: #777;
+    text-decoration: none;
+}
+
+/* Размер карты */
+#map {
+    height: 400px; /* Высота карты */
+    border-radius: 10px; /* Закругленные углы карты */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Тень для карты */
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Заголовок для сертификатов */
+.certificate-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2em; /* Размер шрифта */
+    margin-top: 40px; /* Отступ сверху */
+    margin-bottom: 15px; /* Отступ снизу */
+    color: #333333; /* Цвет текста */
+}
+
+
+.scroll-car-container,
+.scroll-car-container-left,
+.scroll-car-container-right {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.scroll-car-container {
+    left: 95%; /* Центр */
+    top: 90%;
+}
+
+.scroll-car-container-left {
+    left: 80%; /* Слева */
+    top: 80%;
+}
+
+
+.scroll-car,
+.scroll-car-left,
+.scroll-car-right {
+    width: 200px;
+    transition: transform 0.1s ease-out, opacity 0.5s ease;
+    opacity: 1;
+}
+
+
+
+
+

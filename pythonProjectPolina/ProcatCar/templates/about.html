@@ -1,0 +1,244 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block urlContent %}
+
+    <section class="company-hero-section">
+        <video autoplay loop muted class="background-video">
+            <source src="/media/static/vid.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+        </video>
+        <div class="company-hero-content">
+            <h1><a href="#about-company" style="color: white; text-decoration: none;">Comfort Car</a></h1>
+            <p>Самый широкий выбор автомобилей в Минске</p>
+        </div>
+    </section>
+
+    {% for about in abouts %}
+
+
+    <!--<section id="about-company">
+        <section class="info-block-1">
+            <div class="info-content-1">
+                <h2>О компании Comfort Car</h2>
+                <p>Автопрокат Comfort Car быстро развивающаяся автотранспортная компания, которая постоянно повышает качество обслуживания, что успели оценить тысячи десятки тысяч наших клиентов. Все автомобили оборудованы современными системами ABS, cruise control, и infotainment systems с Bluetooth connectivity.</p>
+                <p>Работаем с 2010 года и для нашей команды нет неразрешимых задач!</p>
+                <p>Листайте вниз, а стремитесь наверх!</p>
+            </div>
+        </section>-->
+        
+    <!--<p>Мы оказываем услуги аренды автомобилей по всей территории Республики Беларусь и предлагаем высочайший уровень сервиса, надежность и точность, которые гарантируют ваш комфорт  и безопасность.</p>-->
+        <!--<img width="600" src="{{ about.aboutimg.url }}" alt="О нас"><br><br>
+        <h2>{{ about.ustext }}</h2> -->
+
+
+        <section class="car-history-section">
+            <h1 >История компании Comfort Car</h1>
+
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Наш Путь Начался в 2010 Году</h3>
+                        <p>В 2010 году небольшая группа автолюбителей объединилась, чтобы создать сервис проката автомобилей в нашем городе. Они стремились предоставить клиентам доступные и надежные автомобили, чтобы каждый мог наслаждаться свободой передвижения.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Расширение Автопарка</h3>
+                        <p>С каждым годом мы увеличивали наш автопарк, добавляя новые модели и обеспечивая разнообразие для наших клиентов. В 2015 году мы добавили автомобили премиум-класса, чтобы удовлетворить растущий спрос.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Фокус на Обслуживании Клиентов</h3>
+                        <p>Мы всегда уделяли внимание качеству обслуживания. Наша команда прошла обучение, чтобы обеспечивать высокий уровень сервиса и удовлетворенность клиентов. Каждый отзыв для нас важен!</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Инновации и Технологии</h3>
+                        <p>В 2020 году мы внедрили новые технологии, включая мобильное приложение для удобства наших клиентов. Теперь бронирование автомобиля стало еще проще и быстрее!</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Планы на Будущее</h3>
+                        <p>Мы планируем продолжать развиваться, добавляя новые автомобили и улучшая сервис. Наша цель - стать лучшим сервисом проката автомобилей в регионе и предлагать нашим клиентам только самое лучшее!</p>
+                    </div>
+                </div>
+                        <!-- Стрелка в конце линии -->
+        <div class="timeline-arrow"></div>
+            </div>
+        </section>
+
+<article class="fot"></article><br><br><br>
+        
+<div class="scroll-car-container">
+    <img src="/media/static/car123.png" alt="Машина 1" class="scroll-car">
+</div>
+<div class="scroll-car-container-left">
+    <img src="/media/static/car123.png" alt="Машина слева" class="scroll-car-left">
+</div>
+
+<div class="scroll-car-container-right">
+    <img src="/media/static/car123.png" alt="Машина справа" class="scroll-car-right">
+</div>
+
+
+<script>
+const carCenter = document.querySelector('.scroll-car');
+const containerCenter = document.querySelector('.scroll-car-container');
+
+const carLeft = document.querySelector('.scroll-car-left');
+const containerLeft = document.querySelector('.scroll-car-container-left');
+
+const carRight = document.querySelector('.scroll-car-right');
+const containerRight = document.querySelector('.scroll-car-container-right');
+
+// Начальная позиция машин
+let initialPosition = window.innerHeight * 0.5; // 50% высоты окна
+
+// Устанавливаем начальное положение
+containerCenter.style.top = `${initialPosition}px`;
+containerLeft.style.top = `${initialPosition}px`;
+containerRight.style.top = `${initialPosition}px`;
+
+window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY; // Текущая вертикальная прокрутка
+    const maxScroll = document.body.scrollHeight - window.innerHeight; // Максимальная прокрутка
+
+    // Позиция контейнеров зависит от прокрутки
+    containerCenter.style.top = `${initialPosition + scrollY}px`;
+    containerLeft.style.top = `${initialPosition + scrollY}px`;
+    containerRight.style.top = `${initialPosition + scrollY}px`;
+
+    // Рассчитываем прозрачность и вращение для центральной машины
+    const opacityCenter = 1 - scrollY / (maxScroll / 2);
+    carCenter.style.opacity = Math.max(0, Math.min(1, opacityCenter));
+    const rotationCenter = scrollY / 20;
+    carCenter.style.transform = `translate(-50%, -50%) rotate(${rotationCenter}deg)`;
+
+    // Для левой машины
+    const opacityLeft = 1 - scrollY / (maxScroll / 2);
+    carLeft.style.opacity = Math.max(0, Math.min(1, opacityLeft));
+    const rotationLeft = -scrollY / 25; // Поворот в другую сторону
+    carLeft.style.transform = `translate(-50%, -50%) rotate(${rotationLeft}deg)`;
+
+    // Для правой машины
+    const opacityRight = 1 - scrollY / (maxScroll / 2);
+    carRight.style.opacity = Math.max(0, Math.min(1, opacityRight));
+    const rotationRight = scrollY / 15; // Быстрее вращается
+    carRight.style.transform = `translate(-50%, -50%) rotate(${rotationRight}deg)`;
+});
+
+</script>
+
+<section class="company-requisites-section">
+    <h2 class="requisites-title">Наши адреса</h2>
+    
+    <!-- Контейнер для списка адресов и карты -->
+    <div class="requisites-content">
+        <div class="addresses-list">
+            <ul>
+                <li><a href="#" data-lat="53.9" data-lng="27.5667">Главный офис, ул. Машерова д.123</a></li>
+                <li><a href="#" data-lat="53.91" data-lng="27.56">Консультация сотрудников, ул. Прушинских д.78</a></li>
+                <li><a href="#" data-lat="53.89" data-lng="27.55">Отдел кадров, ул. Ленинградская д.15</a></li>
+            </ul>
+        </div>
+
+        <!-- Контейнер для карты -->
+        <div id="map" style="height: 400px; margin-top: 20px;"></div>
+    </div>
+</section>
+
+    
+    <script>
+// Инициализация карты с координатами Минска
+var map = L.map('map').setView([53.9, 27.5667], 12);  // Координаты центра Минска
+
+// Добавление слоя карты из OpenStreetMap - метод библиотеки Leaflet
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> LR3'
+}).addTo(map);
+
+// Пример добавления точек офисов компании
+var officeLocations = [
+    {lat: 53.9, lng: 27.5667, title: "Главный офис", description: "ул. Машерова д.123"},
+    {lat: 53.91, lng: 27.56, title: "Консультация сотрудников", description: "ул. Прушинских д.78"},
+    {lat: 53.89, lng: 27.55, title: "Отдел кадров", description: "ул. Ленинградская д.15"}
+];
+
+// Добавляем маркеры для каждой точки
+officeLocations.forEach(function(location) {
+    L.marker([location.lat, location.lng]).addTo(map)
+        .bindPopup('<b>' + location.title + '</b><br>' + location.description); // всплывающее окно с информацией
+});
+
+// Обработчик клика по ссылке в списке
+document.querySelectorAll('.addresses-list a').forEach(function(link) {
+    link.addEventListener('click', function(event) {
+        event.preventDefault(); // При клике переход не произойдет
+        var lat = parseFloat(link.getAttribute('data-lat'));
+        var lng = parseFloat(link.getAttribute('data-lng'));
+
+        // Перемещение карты к выбранной точке
+        map.setView([lat, lng], 15);
+
+        // Опционально: открыть всплывающее окно с описанием
+        officeLocations.forEach(function(location) {
+            if (location.lat === lat && location.lng === lng) {
+                L.popup()
+                    .setLatLng([lat, lng])
+                    .setContent('<b>' + location.title + '</b><br>' + location.description)
+                    .openOn(map);
+            }
+        });
+    });
+});
+
+    </script>
+    
+    
+
+
+
+
+
+
+        <!-- Сертификаты компании -->
+
+        <div class="ser" style="background-color: #ffffffd1; width: 1200px;">
+            <br><br>
+        <h2 style="font-size: 2.5em;
+        font-family: 'Didot', serif;
+        font-weight: lighter;
+        letter-spacing: 0.3em;
+    color: #3c3c3c;
+    margin-bottom: 20px; /* Отступ снизу для заголовка */
+    position: relative">Сертификаты компании</h2>
+    
+    
+            <section class="certificate-container">
+                <img src='/media/static/sert.png' alt="background" class="certificate-background">
+                <img src='/media/static/serti.jpeg' alt="background" class="certificate-back">
+                <div class="certificate-header">ЕДИНЫЙ РЕЕСТР АВТОПРОКАТОВ</div>
+                <div class="certificate-subheader">Свидетельство о регистрации компании автопроката</div>
+                <div class="certificate-body">
+                    <p>г. Москва, 17 января 2017</p>
+                    <p>Общество с ограниченной ответственностью «Comfort Car»</p>
+                    <p>ИНН: 7713140252</p>
+                    <p>Регистрационный номер: 8241</p>
+                </div>
+                
+                <img src="/media/static/pechat.png" alt="Печать" class="certificate-seal">
+                <div class="certificate-signature">Осадчук А.П.<br>Директор Ассоциации<br>«АВТОМИНСК»</div>
+            </section>
+            <br><br>
+        </div>
+
+    {% endfor %}
+</section>
+{% endblock %}
+
+{% block title %}О нас{% endblock %}

@@ -1,0 +1,233 @@
+/* Общий стиль для контейнера пагинации */
+#pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Стиль для кнопок пагинации */
+.pagination-button {
+    padding: 8px 16px;
+    background-color: #444;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Эффект при наведении на кнопки */
+.pagination-button:hover {
+    background-color: #666;
+    color: #ffffff;
+    border-color: #888;
+}
+
+/* Стиль для отключенных кнопок */
+.pagination-button:disabled {
+    background-color: #333;
+    color: #777;
+    border-color: #555;
+    cursor: not-allowed;
+}
+
+/* Стиль для текста текущей страницы */
+.pagination-info {
+    font-size: 1.1em;
+    color: #ffffffcc;
+}
+
+#preloader {
+    text-align: center;
+    padding: 100px 100px 100px 100px;
+    margin-top: 100px;
+    position: fixed; /* Используем fixed, чтобы прелоадер оставался на экране */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(15, 17, 19, 0.816);  /* Полупрозрачный фон */
+    z-index: 9999;  /* Убедимся, что прелоадер будет поверх других элементов */
+}
+
+.elegant-lines {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.infinity-path {
+    animation: draw 2.5s ease-in-out infinite, fade 2.5s ease-in-out;
+}
+
+@keyframes draw {
+    0% {
+        stroke-dasharray: 0, 400;
+    }
+    100% {
+        stroke-dasharray: 400, 0;
+    }
+}
+
+@keyframes fade {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+
+
+
+/* Стили для пагинации */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination-btn {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #1A2421;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-btn:hover {
+    background-color: #4b4b4b;
+}
+
+.pagination-btn.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination-btn:not(.disabled) {
+    cursor: pointer;
+}
+
+/* 3D эффект для карточек */
+.car-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    perspective: 1000px; /* Добавление перспективы для 3D эффекта */
+}
+
+.car-item {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 45%, rgba(0, 0, 0, 0.2) 50%, rgba(255, 255, 255, 0) 55%, rgba(255, 255, 255, 0.5) 100%);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.car-item:hover {
+    transform: scale(1.05) rotateY(5deg) rotateX(5deg); /* 3D вращение при наведении */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Усиленная тень */
+}
+
+.car-item img {
+    transition: transform 0.3s ease;
+}
+
+.car-item img:hover {
+    transform: scale(1.03);
+}
+
+
+
+
+
+
+
+
+     /* Контейнер анимации */
+     .animation-container-1 {
+        position: relative;
+        width: 1000px;
+        height: 500px;
+        overflow: hidden;
+    }
+
+    /* Статичная картинка машины */
+    .static-car {
+        position: absolute;
+        width: 50%;
+        z-index: 2; /* Машина сверху */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    /* Стиль объектов, которые будут "выглядывать" из-за машины */
+    .peek-object {
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        background-color: rgba(255, 0, 0, 0); /* Пример цвета (можно заменить на картинки) */
+        opacity: 0; /* Скрыты изначально */
+        transition: transform 1s ease, opacity 1s ease; /* Плавная анимация */
+        z-index: 1; /* За машиной */
+    }
+
+    /* Начальные позиции объектов - скрыты за машиной */
+    .peek-object.object1 {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .peek-object.object2 {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .peek-object.object3 {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .peek-object.object4 {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .peek-object.object5 {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    /* Изображения для объектов */
+    .peek-object img {
+        width: 100%;
+        height: 100%;
+    }
+
+
+
+
+
+    

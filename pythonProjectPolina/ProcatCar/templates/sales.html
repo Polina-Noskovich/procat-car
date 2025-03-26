@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block title %}Акции{% endblock %}
+
+{% block urlContent %}
+<section class="sales-se">
+    <br><br><br><br><br>
+<h1 style="font-size: 3em;
+font-family: 'Playfair Display', serif;
+color: #e4e4e4;
+margin-bottom: 20px; /* Отступ снизу для заголовка */
+position: relative">
+<i class="fas fa-tags" style="margin-right: 10px; font-size: 1em; vertical-align: middle; color: #ffffff"></i><!-- Иконка акций -->Акции</h1>
+<section class="sales-section">
+    <div class="sales-container">
+        <ul class="sales-list">
+            {% for sale in sales %}
+                <li class="sale-item">
+                    <h2 class="sale-code">{{ sale.code }}</h2>
+                    <p class="sale-discount">Вы сэкономите: {{ sale.discount }} рублей</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+</section>
+{% endblock %}
+
+
+

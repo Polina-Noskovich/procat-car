@@ -1,0 +1,144 @@
+{% extends 'layout.html' %}
+
+{% block urlContent %}
+<section class="register-container">
+    <div class="overlay-register">
+        <div class="register-box">
+            <h1>Регистрация</h1>
+            
+            <!-- Проверка на наличие ошибок формы -->
+            {% if form.errors %}
+                <div class="error-box-register">
+                    <p>Пожалуйста, исправьте ошибки ниже:</p>
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ field.label }}: {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="register-button">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Встроенные стили -->
+<style>
+/* Контейнер для всей страницы */
+.register-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/media/static/mont.png'); /* Путь к вашему изображению */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Полупрозрачный наложенный блок */
+.overlay-register {
+    background-color: rgba(255, 255, 255, 0.75);
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px); /* Размытие фона */
+}
+
+/* Оформление блока регистрации */
+.register-box {
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Заголовок */
+.register-box h1 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    color: #333; /* Нейтральный цвет текста */
+}
+
+/* Поля ввода */
+.register-box form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: 1px solid #ddd; /* Легкая граница */
+    border-radius: 8px; /* Плавные углы */
+    background-color: #f9f9f9; /* Мягкий фон для полей */
+    box-sizing: border-box;
+}
+
+/* Кнопка регистрации */
+.register-button {
+    background-color: #0056b3;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease; /* Плавный переход цвета */
+}
+
+.register-button:hover {
+    background-color: #004494;
+}
+
+/* Оформление ошибок */
+.error-box-register {
+    background-color: rgba(255, 0, 0, 0.1); /* Красный фон с прозрачностью для ошибок */
+    color: #cc0000;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.error-box-register p {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.error-box-register ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.error-box-register li {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .register-container {
+        padding: 20px;
+    }
+    .overlay-register {
+        padding: 30px;
+    }
+    .register-box h1 {
+        font-size: 22px;
+    }
+}
+</style>
+
+{% endblock %}
+
+{% block title %}Регистрация{% endblock %}

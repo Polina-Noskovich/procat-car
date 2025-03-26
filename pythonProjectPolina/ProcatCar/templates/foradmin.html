@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block urlContent %}
+<section class="features" >
+    <h1>Администратор</h1>
+    <h1>Cамая популярная машина</h1>
+    <p>Cамая популярная машина: Porshe стоимостью 300 рублей. Общая выручка за данную модель составила 4500 рублей</p>
+
+    <h1>Статистические показатели</h1>
+    <h3>Общая сумма продаж: 10000 рублей</h3>
+    <h3>Средняя сумма продаж: 1000</h3>
+    <h3>Медианная сумма продаж: 800</h3>
+    <h3>Мода суммы продаж: 1200</h3>
+
+    <h3>Средний возраст клиентов: 35 лет</h3>
+    <h3>Медианный возраст клиентов: 40 лет</h3>
+
+  
+
+    <h3>Список клиентов (в алфавитном порядке)</h3>
+    <ul>
+        <li>aa</li>
+        <li>Alice</li>
+        <li>Bob</li>
+        <li>client</li>
+        <li>David</li>
+        <li>Emma</li>
+        <li>Sasha</li>
+        <li>Qrt</li>
+    </ul>
+
+    <h2>Список авто (в алфавитном порядке)</h2>
+    <ul>
+        <li>Tesla - 2020</li>
+        <li>Shkoda - 2007</li>
+        <li>Mersedes - 2024</li>
+        <li>Porche - 2021</li>
+        <li>BMW - 2018</li>
+    </ul>
+
+    <div>
+      <h2>Продажи по категориям</h2>
+      <img src="data:image/png;base64,{{ graph_sales }}" alt="Sales by Category">
+  </div>
+
+  <div>
+      <h2>Распределение возраста клиентов</h2>
+      <img src="data:image/png;base64,{{ graph_age }}" alt="Age Distribution of Customers">
+  </div>
+
+  <div>
+      <h2>Популярность товаров</h2>
+      <img src="data:image/png;base64,{{ graph_popularity }}" alt="Popularity of Products">
+  </div>
+</section>
+{% endblock %}
+
+{% block title %}Администратор{% endblock %}

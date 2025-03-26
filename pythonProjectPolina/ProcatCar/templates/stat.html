@@ -1,0 +1,27 @@
+<!-- Создайте файл sales_statistics.html в папке templates вашего Django-приложения -->
+
+{% extends 'layout.html' %}
+
+{% block urlContent %}
+<div class="statistics">
+    <h1>Статистические показатели</h1>
+    
+    <h2>Общая сумма продаж: {{ total_sales_amount.total_sales }}</h2>
+    <h2>Средняя сумма продаж: {{ average_sales_amount.average_sales }}</h2>
+    
+    <h2>Средний возраст клиентов: {{ customers_age.average_age }}</h2>
+    <h2>Медианный возраст клиентов: {{ customers_age.median_age }}</h2>
+    
+    <h2>Наиболее популярный тип товара: {{ popular_car }}</h2>
+    <h2>Тип товара, приносящий наибольшую прибыль: {{ profitable_car }}</h2>
+
+    <h1>Скидки</h1>
+    {% for sale in sales %}
+        <h2>{{ sale.name }}</h2>
+        <h4>Вы сэкономите: {{ sale.about }} рублей</h4><br><br>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block title %}Статистика{% endblock %}
+
